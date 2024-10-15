@@ -41,7 +41,6 @@ class TransactionController extends Controller
 
     public function store(Request $request)
     {
-        // dd($request->all());
         $request->validate([
             'description'        => 'required|string|max:255',
             'code'               => 'required|string|max:50',
@@ -52,30 +51,30 @@ class TransactionController extends Controller
             'details.*.name'     => 'required|string|max:255',
             'details.*.amount'   => 'required|numeric',
         ]);
-        
-        // Membuat transaksi baru di tabel transaction_header
+
         $transaction = TransactionHeader::create([
             'code'        => $request->input('code'),
             'description' => $request->input('description'),
             'rate_euro'   => $request->input('rate_euro'),
             'date_paid'   => $request->input('date_paid')
         ]);
-        
-        // Memastikan transaksi baru dibuat sebelum lanjut ke proses detail
-        if ($transaction) {
-            foreach ($request->details as $detail) {
-                $transaction->details()->create([
-                    'transaction_id'          => $transaction->id,
-                    'transaction_category_id' => $detail['category'],
-                    'name'                    => $detail['name'],
-                    'value_idr'               => $detail['amount'],
-                ]);
+
+        try {
+            if ($transaction) {
+                foreach ($request->details as $detail) {
+                    $transaction->details()->create([
+                        'transaction_id'          => $transaction->id,
+                        'transaction_category_id' => $detail['category'],
+                        'name'                    => $detail['name'],
+                        'value_idr'               => $detail['amount'],
+                    ]);
+                }
+
+                return redirect()->route('transactions.index')->with('success', 'Transaction created successfully.');
             }
-
-            return redirect()->route('transactions.index')->with('success', 'Transaction created successfully.');
+        } catch (\Throwable $th) {
+            return redirect()->back()->withErrors('error', 'Failed to create transaction.' . $th->getMessage());
         }
-
-        return redirect()->route('transactions.index')->with('error', 'Failed to create transaction.');
     }
 
     public function edit(TransactionHeader $transaction)
