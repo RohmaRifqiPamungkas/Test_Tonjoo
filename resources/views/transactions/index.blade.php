@@ -10,6 +10,25 @@
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
                     <div class="block mb-8">
+                        <!-- Menampilkan pesan error -->
+                        @if ($errors->any())
+                            <div class="p-3 rounded bg-red-500 text-white mb-4">
+                                <h4 class="font-bold">There were some errors:</h4>
+                                <ul class="list-disc ml-5">
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
+
+                        <!-- Menampilkan pesan sukses -->
+                        @if (session('success'))
+                            <div class="p-3 rounded bg-green-500 text-green-100 mb-4">
+                                {{ session('success') }}
+                            </div>
+                        @endif
+
                         <div class="flex space-x-4">
                             <a href="{{ route('transactions.index') }}"
                                 class="px-4 py-2 bg-gray-200 text-gray-700 rounded">List</a>
@@ -25,14 +44,21 @@
                             <input type="search" name="search" id="search"
                                 class="form-input rounded-md shadow-sm w-full" value="{{ request('search') }}"
                                 placeholder="Search description or code...">
-                            <button type="submit" class="px-4 py-2 bg-gray-200 text-gray-700 rounded">Search</button>
-                            <input type="date" class="form-input rounded-md shadow-sm w-full">
-                            <input type="date" class="form-input rounded-md shadow-sm w-full">
-                            <select name="transaction_type" id="transaction_type" class="form-select rounded-md shadow-sm">
-                                <option value="">Select Type</option>
-                                <option value="income" {{ request('transaction_type') === 'income' ? 'selected' : '' }}>Income</option>
-                                <option value="expense" {{ request('transaction_type') === 'expense' ? 'selected' : '' }}>Expense</option>
+                            <input type="date" name="start_date" class="form-input rounded-md shadow-sm w-full"
+                                value="{{ request('start_date') }}">
+                            <input type="date" name="end_date" class="form-input rounded-md shadow-sm w-full"
+                                value="{{ request('end_date') }}">
+                            <select name="transaction_category_id" id="transaction_category_id"
+                                class="form-select rounded-md shadow-sm">
+                                <option value="">Select Category</option>
+                                @foreach ($categories as $category)
+                                    <option value="{{ $category->id }}"
+                                        {{ request('transaction_category_id') == $category->id ? 'selected' : '' }}>
+                                        {{ $category->name }}
+                                    </option>
+                                @endforeach
                             </select>
+                            <button type="submit" class="px-4 py-2 bg-gray-200 text-gray-700 rounded">Search</button>
                         </form>
                     </div>
 
@@ -74,14 +100,16 @@
                                                     </span>
                                                 @endforeach
                                             @else
-                                                <span class="px-3 py-1 text-xs text-white bg-gray-500 rounded-full">No Category</span>
+                                                <span class="px-3 py-1 text-xs text-white bg-gray-500 rounded-full">No
+                                                    Category</span>
                                             @endif
                                         </td>
 
                                         <!-- Nama Transaksi dan Nominal -->
                                         @if ($transaction->details->isNotEmpty())
                                             <td class="py-3 px-6">{{ $transaction->details[0]->name }}</td>
-                                            <td class="py-3 px-6">Rp{{ number_format($transaction->details[0]->value_idr, 2) }}</td>
+                                            <td class="py-3 px-6">
+                                                Rp{{ number_format($transaction->details[0]->value_idr, 2) }}</td>
                                         @else
                                             <td class="py-3 px-6">-</td>
                                             <td class="py-3 px-6">-</td>
@@ -103,7 +131,8 @@
                                                     <a href="{{ route('transactions.edit', $transaction->id) }}"
                                                         class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Edit</a>
                                                     <form
-                                                        action="{{ route('transactions.destroy', $transaction->id) }}" method="POST">
+                                                        action="{{ route('transactions.destroy', $transaction->id) }}"
+                                                        method="POST">
                                                         @csrf
                                                         @method('DELETE')
                                                         <button
@@ -117,6 +146,7 @@
                                 @endforeach
                             </tbody>
                         </table>
+
                     </div>
 
                     <div class="mt-4">

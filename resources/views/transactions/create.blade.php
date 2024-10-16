@@ -11,8 +11,23 @@
                 <form id="transaction-form" action="{{ route('transactions.store') }}" method="POST">
                     @csrf
 
+                    <!-- Menampilkan pesan error -->
                     @if ($errors->any())
-                        <h4>{{ $errors->first() }}</h4>
+                        <div class="p-3 rounded bg-red-500 text-white mb-4">
+                            <h4 class="font-bold">There were some errors:</h4>
+                            <ul class="list-disc ml-5">
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
+
+                    <!-- Menampilkan pesan sukses -->
+                    @if (session('success'))
+                        <div class="p-3 rounded bg-green-500 text-green-100 mb-4">
+                            {{ session('success') }}
+                        </div>
                     @endif
 
                     <!-- Header Transaksi -->
@@ -22,7 +37,7 @@
                             <textarea id="description" name="description" class="form-input rounded-md shadow-sm mt-1 block w-full flex-grow"
                                 placeholder="Transaksi Bulan Agustus">{{ old('description') }}</textarea>
                             @error('description')
-                                <div class="text-red-600">{{ $message }}</div>
+                                <div class="text-red-600 mt-2 text-sm font-semibold">{{ $message }}</div>
                             @enderror
                         </div>
                         <div class="flex flex-col space-y-4">
@@ -32,7 +47,7 @@
                                     class="form-input rounded-md shadow-sm mt-1 block w-full" placeholder="LK2536"
                                     value="{{ old('code') }}">
                                 @error('code')
-                                    <div class="text-red-600">{{ $message }}</div>
+                                    <div class="text-red-600 mt-2 text-sm font-semibold">{{ $message }}</div>
                                 @enderror
                             </div>
                             <div>
@@ -41,7 +56,7 @@
                                     class="form-input rounded-md shadow-sm mt-1 block w-full" placeholder="15.000"
                                     value="{{ old('rate_euro') }}">
                                 @error('rate_euro')
-                                    <div class="text-red-600">{{ $message }}</div>
+                                    <div class="text-red-600 mt-2 text-sm font-semibold">{{ $message }}</div>
                                 @enderror
                             </div>
                             <div>
@@ -50,7 +65,7 @@
                                     class="form-input rounded-md shadow-sm mt-1 block w-full"
                                     value="{{ old('date_paid') }}">
                                 @error('date_paid')
-                                    <div class="text-red-600">{{ $message }}</div>
+                                    <div class="text-red-600 mt-2 text-sm font-semibold">{{ $message }}</div>
                                 @enderror
                             </div>
                         </div>
@@ -58,65 +73,15 @@
 
                     <!-- Detail Transaksi -->
                     <div id="details-container">
-                        @php
-                            $oldDetails = old('details', []);
-                        @endphp
-
-                        <div class="mb-4 close p-4 border rounded-lg detail-template" style="display: none;">
-                            <div class="flex justify-between items-center mb-4">
-                                <label class="block text-gray-700">Kategori</label>
-                                <button type="button" class="remove-category text-red-600">✖</button>
+                        <div class="mb-4 p-4 border rounded-lg detail-template">
+                            <div class="border p-4">
+                                <h2 class="font-bold mb-4">DATA TRANSAKSI</h2>
+                                <div id="transactionGroups"></div>
+                                <button id="addGroupButton" class="bg-green-500 text-white px-4 py-2 mt-4">Tambah
+                                    Kelompok</button>
+                                <div id="total-amount" class="font-bold mt-4">Total: 0.00</div>
                             </div>
-                            <select name="details[0][category]"
-                                class="form-select rounded-md shadow-sm block w-full mb-4 category-select">
-                                @foreach ($categories as $category)
-                                    <option value="{{ $category->id }}"
-                                        {{ old('details.0.category') == $category->id ? 'selected' : '' }}>
-                                        {{ $category->name }}
-                                    </option>
-                                @endforeach
-                            </select>
-
-                            @error('details.0.category')
-                                <div class="text-red-600">{{ $message }}</div>
-                            @enderror
-
-                            <div class="grid grid-cols-4 gap-4 items-center mb-2">
-                                <label class="block text-gray-700 col-span-2">Nama Transaksi</label>
-                                <label class="block text-gray-700 col-span-2">Nominal (IDR)</label>
-                            </div>
-                            <div class="grid grid-cols-4 gap-4 mb-3">
-                                <input type="text" name="details[0][name]"
-                                    class="form-input rounded-md shadow-sm col-span-2"
-                                    placeholder="Contoh: Mobil Agustus" value="{{ old('details.0.name') }}">
-                                @error('details.0.name')
-                                    <div class="text-red-600 col-span-2">{{ $message }}</div>
-                                @enderror
-
-                                <input type="number" name="details[0][amount]"
-                                    class="form-input rounded-md shadow-sm col-span-1" placeholder="800.000"
-                                    value="{{ old('details.0.amount') }}">
-                                @error('details.0.amount')
-                                    <div class="text-red-600 col-span-1">{{ $message }}</div>
-                                @enderror
-
-                                <button type="button"
-                                    class="add-transaction ml-4 bg-blue-600 text-white px-4 py-2 rounded-md">Tambah</button>
-                            </div>
-
                         </div>
-                        <button type="button"
-                            class="add-category bg-blue-500 text-white px-4 py-2 rounded-md mt-4">Tambah
-                            Kategori</button>
-                    </div>
-
-                    <!-- Pratinjau dan Total -->
-                    <div id="preview-list" class="mt-8 mb-4 p-4 border rounded-lg">
-                        <h4 class="text-lg font-medium">Pratinjau Transaksi Ditambahkan</h4>
-                    </div>
-
-                    <div class="mt-4 p-4 border rounded-lg">
-                        <h4 class="text-lg font-medium">Total: IDR <span id="total-amount">0.00</span></h4>
                     </div>
 
                     <!-- Tombol Simpan dan Batal -->
@@ -130,91 +95,112 @@
     </div>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const detailsContainer = document.getElementById('details-container');
-            const detailTemplate = document.querySelector('.detail-template');
-            const previewList = document.getElementById('preview-list');
+        document.addEventListener('DOMContentLoaded', () => {
+            const container = document.getElementById('transactionGroups');
+            const addGroupButton = document.getElementById('addGroupButton');
             let detailIndex = 0;
 
-            document.querySelector('.add-category').addEventListener('click', function() {
-                const newDetail = detailTemplate.cloneNode(true);
-                newDetail.style.display = 'block';
-                newDetail.classList.remove('detail-template');
+            const createTransactionGroup = () => {
+                const groupDiv = document.createElement('div');
+                groupDiv.classList.add('border', 'p-4', 'mb-4', 'relative');
 
-                newDetail.querySelector('select[name="details[0][category]"]').setAttribute(
-                    'name', `details[${detailIndex}][category]`);
-                newDetail.querySelector('input[name="details[0][name]"]').setAttribute(
-                    'name', `details[${detailIndex}][name]`);
-                newDetail.querySelector('input[name="details[0][amount]"]').setAttribute(
-                    'name', `details[${detailIndex}][amount]`);
+                const closeButton = document.createElement('button');
+                closeButton.innerText = '×';
+                closeButton.classList.add('absolute', 'top-2', 'right-2', 'text-xl');
+                closeButton.onclick = () => groupDiv.remove();
+                groupDiv.appendChild(closeButton);
 
-                const amountInput = newDetail.querySelector('input[name^="details"][name$="[amount]"]');
+                const categoryDiv = document.createElement('div');
+                categoryDiv.classList.add('mb-2');
+                const categoryLabel = document.createElement('label');
+                categoryLabel.innerText = 'Category';
+                categoryLabel.classList.add('mr-2');
+                const categorySelect = document.createElement('select');
+                categorySelect.classList.add('form-select', 'rounded-md', 'shadow-sm', 'p-1');
+                categorySelect.name = `details[${detailIndex}][category]`;
+
+                const categories = [{
+                        id: 1,
+                        name: 'Income'
+                    },
+                    {
+                        id: 2,
+                        name: 'Expense'
+                    },
+                ];
+                categories.forEach(category => {
+                    const option = document.createElement('option');
+                    option.value = category.id;
+                    option.textContent = category.name;
+                    categorySelect.appendChild(option);
+                });
+
+                categoryDiv.appendChild(categoryLabel);
+                categoryDiv.appendChild(categorySelect);
+                groupDiv.appendChild(categoryDiv);
+
+                const table = document.createElement('table');
+                table.classList.add('w-full', 'bg-white', 'border-collapse');
+                table.innerHTML = `
+                    <thead class="bg-gray-100 text-gray-600 uppercase text-sm leading-normal">
+                        <tr>
+                            <th class="py-3 px-6 text-left">Nama Transaksi</th>
+                            <th class="py-3 px-6 text-left">Nominal (IDR)</th>
+                            <th class="py-3 px-6 text-left"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                    </tbody>
+                 `;
+                groupDiv.appendChild(table);
+                container.appendChild(groupDiv);
+                addRowToTable(table.querySelector('tbody'));
+
+                detailIndex++;
+            };
+
+            const addRowToTable = (tbody) => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td class="border-t p-4">
+                        <input type="text" name="details[${detailIndex}][name]" class="form-input rounded-md shadow-sm col-span-2" placeholder="Contoh: Mobil Agustus">
+                    </td>
+                    <td class="border-t p-2">
+                        <input type="number" name="details[${detailIndex}][amount]" class="form-input rounded-md shadow-sm col-span-1" placeholder="800.000">
+                    </td>
+                    <td class="border-t p-2">
+                        <button class="bg-blue-500 text-white px-2 py-1 mr-1">+</button>
+                        <button class="bg-red-500 text-white px-2 py-1">−</button>
+                    </td>
+                    `;
+
+                const amountInput = row.querySelector('input[name$="[amount]"]');
                 amountInput.addEventListener('input', updateTotal);
 
-                detailsContainer.insertBefore(newDetail, this);
-                detailIndex++;
-            });
+                const plusButton = row.querySelector('button:nth-child(1)');
+                const minusButton = row.querySelector('button:nth-child(2)');
 
-            detailsContainer.addEventListener('click', function(event) {
-                if (event.target.classList.contains('remove-category')) {
-                    const detail = event.target.closest('.close');
-                    if (detail) {
-                        detail.remove();
-                        updateTotal();
-                    }
-                }
-
-                if (event.target.classList.contains('add-transaction')) {
-                    const detail = event.target.closest('.close');
-                    const nameInput = detail.querySelector('input[name^="details"][name$="[name]"]');
-                    const amountInput = detail.querySelector('input[name^="details"][name$="[amount]"]');
-                    const categorySelect = detail.querySelector('.category-select');
-
-                    if (nameInput.value.trim() && amountInput.value.trim()) {
-                        const amount = parseFloat(amountInput.value) || 0;
-                        const previewItem = document.createElement('div');
-                        previewItem.className =
-                            'preview-item bg-gray-100 p-2 mb-2 rounded-md flex justify-between items-center';
-                        previewItem.innerHTML = `<span>${categorySelect.options[categorySelect.selectedIndex].text}: ${nameInput.value} - IDR ${amount.toFixed(2)}</span><button type="button" class="delete-preview-item text-red-600">✖</button>`;
-                        previewList.appendChild(previewItem);
-
-                        nameInput.value = '';
-                        amountInput.value = '';
-                        updateTotal();
-                    } else {
-                        alert('Pastikan Nama Transaksi dan Nominal telah terisi dengan benar.');
-                    }
-                }
-            });
-
-            previewList.addEventListener('click', function(event) {
-                if (event.target.classList.contains('delete-preview-item')) {
-                    const previewItem = event.target.closest('.preview-item');
-                    previewItem.remove();
+                plusButton.addEventListener('click', () => addRowToTable(tbody));
+                minusButton.addEventListener('click', () => {
+                    row.remove();
                     updateTotal();
-                }
-            });
-
-            document.getElementById('transaction-form').addEventListener('submit', function(event) {
-                const allDetails = document.querySelectorAll('.close:not(.detail-template)');
-                allDetails.forEach(function(detail, index) {
-                    detail.querySelector('select[name^="details"][name$="[category]"]')
-                        .setAttribute('name', `details[${index}][category]`);
-                    detail.querySelector('input[name^="details"][name$="[name]"]').setAttribute(
-                        'name', `details[${index}][name]`);
-                    detail.querySelector('input[name^="details"][name$="[amount]"]').setAttribute(
-                        'name', `details[${index}][amount]`);
                 });
-            });
 
-            function updateTotal() {
+                tbody.appendChild(row);
+            };
+
+            const updateTotal = () => {
                 let total = 0;
-                document.querySelectorAll('input[name*="amount"]').forEach(function(input) {
+                document.querySelectorAll('input[name$="[amount]"]').forEach(input => {
                     const amount = parseFloat(input.value) || 0;
                     total += amount;
                 });
-                document.getElementById('total-amount').textContent = total.toFixed(2);
-            }
+                document.getElementById('total-amount').textContent = `Total: ${total.toFixed(2)}`;
+            };
+
+            addGroupButton.addEventListener('click', createTransactionGroup);
+            createTransactionGroup();
         });
     </script>
 
