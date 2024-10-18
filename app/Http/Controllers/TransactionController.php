@@ -143,8 +143,36 @@ class TransactionController extends Controller
         return redirect()->route('transactions.index')->with('success', 'Transaction deleted successfully.');
     }
 
-    public function recap()
+    public function recap(Request $request)
     {
-        return view('transactions.recap');
+        $categories = MsCategory::all();
+        $query = TransactionHeader::with('details.category');
+        $startDate = $request->input('start_date');
+        $transactionCategoryId = $request->input('transaction_category_id');
+        $endDate = $request->input('end_date');
+        $category = $request->input('category', 'all');
+        $search = $request->input('search');
+
+        $query = TransactionHeader::with('details.category')->orderBy('date_paid', 'asc');
+
+        if ($startDate && $endDate) {
+            $query->whereBetween('date_paid', [$startDate, $endDate]);
+        }
+
+        if ($transactionCategoryId) {
+            $query->whereHas('details.category', function ($q) use ($transactionCategoryId) {
+                $q->where('id', $transactionCategoryId);
+            });
+        }
+
+        if ($search) {
+            $query->whereHas('details', function ($q) use ($search) {
+                $q->where('name', 'like', '%' . $search . '%');
+            });
+        }
+
+        $transactions = $query->get();
+
+        return view('transactions.recap', compact('transactions', 'startDate', 'endDate', 'category', 'search', 'transactionCategoryId', 'categories'));
     }
 }

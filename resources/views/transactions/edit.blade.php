@@ -79,7 +79,7 @@
         document.addEventListener('DOMContentLoaded', function() {
             const detailsContainer = document.getElementById('details-container');
             const detailTemplate = document.querySelector('.detail-template');
-            let detailIndex = {{ count($transaction->details) }}; // Menyesuaikan indeks sesuai jumlah detail saat ini
+            let detailIndex = {{ count($transaction->details) }};
 
             document.querySelector('.add-category').addEventListener('click', function() {
                 const newDetail = detailTemplate.cloneNode(true);

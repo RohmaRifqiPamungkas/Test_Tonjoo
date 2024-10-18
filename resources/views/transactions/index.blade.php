@@ -40,26 +40,34 @@
                     </div>
 
                     <div class="flex gap-4 mb-4">
-                        <form action="{{ route('transactions.index') }}" method="GET" class="flex gap-4 mb-4">
-                            <input type="search" name="search" id="search"
-                                class="form-input rounded-md shadow-sm w-full" value="{{ request('search') }}"
-                                placeholder="Search description or code...">
-                            <input type="date" name="start_date" class="form-input rounded-md shadow-sm w-full"
-                                value="{{ request('start_date') }}">
-                            <input type="date" name="end_date" class="form-input rounded-md shadow-sm w-full"
-                                value="{{ request('end_date') }}">
-                            <select name="transaction_category_id" id="transaction_category_id"
-                                class="form-select rounded-md shadow-sm">
-                                <option value="">Select Category</option>
-                                @foreach ($categories as $category)
-                                    <option value="{{ $category->id }}"
-                                        {{ request('transaction_category_id') == $category->id ? 'selected' : '' }}>
-                                        {{ $category->name }}
-                                    </option>
-                                @endforeach
-                            </select>
-                            <button type="submit" class="px-4 py-2 bg-gray-200 text-gray-700 rounded">Search</button>
+                        <form action="{{ route('transactions.index') }}" method="GET">
+                            <div class="flex space-x-4 mb-4">
+                                <a href="{{ route('transactions.index') }}"
+                                    class="px-4 py-2 bg-blue-200 text-blue-700 rounded">Reset Filter</a>
+    
+                                <input type="date" name="start_date" class="form-input rounded-md shadow-sm"
+                                    value="{{ request('start_date') }}">
+                                <input type="date" name="end_date" class="form-input rounded-md shadow-sm"
+                                    value="{{ request('end_date') }}">
+    
+                                    <select name="transaction_category_id" id="transaction_category_id"
+                                    class="form-select rounded-md shadow-sm">
+                                    <option value="">Select Category</option>
+                                    @foreach ($categories as $category)
+                                        <option value="{{ $category->id }}"
+                                            {{ request('transaction_category_id') == $category->id ? 'selected' : '' }}>
+                                            {{ $category->name }}
+                                        </option>
+                                    @endforeach
+                                </select>
+    
+                                <input type="text" name="search" class="form-input rounded-md shadow-sm"
+                                    placeholder="Search" value="{{ request('search') }}">
+    
+                                <button type="submit" class="px-4 py-2 bg-gray-200 text-gray-700 rounded">Search</button>
+                            </div>
                         </form>
+                        
                     </div>
 
                     <div class="bg-white shadow-md rounded overflow-x-auto">
