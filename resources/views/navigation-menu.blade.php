@@ -46,6 +46,10 @@
                                 <x-dropdown-link href="{{ route('transactions.recap') }}">
                                     {{ __('Transaction Recap') }}
                                 </x-dropdown-link>
+                                <!-- Fibonacci Transaction -->
+                                {{-- <x-dropdown-link href="{{ route('transactions.fibonacci') }}">
+                                    {{ __('Fibonacci') }}
+                                </x-dropdown-link> --}}
                             </x-slot>
                         </x-dropdown>
                     </div>

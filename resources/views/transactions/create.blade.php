@@ -98,19 +98,23 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
+            let detailIndex = 0;
             const container = document.getElementById('transactionGroups');
             const addGroupButton = document.getElementById('addGroupButton');
-            let detailIndex = 0;
+
+            addGroupButton.addEventListener('click', (event) => {
+                event.preventDefault();
+
+                createTransactionGroup();
+            });
 
             const createTransactionGroup = () => {
                 const groupDiv = document.createElement('div');
-                groupDiv.classList.add('border', 'p-4', 'mb-4', 'relative', 'bg-white', 'shadow-md',
-                    'rounded-md');
+                groupDiv.classList.add('border', 'p-4', 'mb-4', 'relative', 'bg-white', 'shadow-md', 'rounded-md');
 
                 const closeButton = document.createElement('button');
                 closeButton.innerText = '×';
-                closeButton.classList.add('absolute', 'top-2', 'right-2', 'text-xl', 'text-red-500',
-                    'hover:text-red-600');
+                closeButton.classList.add('absolute', 'top-2', 'right-2', 'text-xl', 'text-red-500', 'hover:text-red-600');
                 closeButton.onclick = () => groupDiv.remove();
                 groupDiv.appendChild(closeButton);
 
@@ -118,10 +122,9 @@
                 categoryDiv.classList.add('mb-2');
                 const categoryLabel = document.createElement('label');
                 categoryLabel.innerText = 'Category';
-                categoryLabel.classList.add('mr-2', 'font-semibold');
+                categoryLabel.classList.add('mr-2');
                 const categorySelect = document.createElement('select');
-                categorySelect.classList.add('form-select', 'rounded-md', 'shadow-sm', 'p-2', 'border',
-                    'border-gray-300', 'w-full');
+                categorySelect.classList.add('form-select', 'rounded-md', 'shadow-sm', 'p-2', 'border', 'border-gray-300', 'w-full');
                 categorySelect.name = `details[${detailIndex}][category]`;
 
                 const categories = [{
@@ -131,8 +134,9 @@
                     {
                         id: 2,
                         name: 'Expense'
-                    }
+                    },
                 ];
+
                 categories.forEach(category => {
                     const option = document.createElement('option');
                     option.value = category.id;
@@ -154,24 +158,24 @@
                             <th class="py-3 px-6 text-left"></th>
                         </tr>
                     </thead>
-                    <tbody>
-                    </tbody>
-                `;
+                    <tbody></tbody>
+        `;
                 groupDiv.appendChild(table);
                 container.appendChild(groupDiv);
-                addRowToTable(table.querySelector('tbody'));
+
+                addRowToTable(table.querySelector('tbody'), detailIndex);
 
                 detailIndex++;
             };
 
-            const addRowToTable = (tbody) => {
+            const addRowToTable = (tbody, index) => {
                 const row = document.createElement('tr');
                 row.innerHTML = `
                     <td class="border-t p-4">
-                        <input type="text" name="details[${detailIndex}][name]" class="form-input rounded-md shadow-sm col-span-2 border border-gray-300 w-full" placeholder="Contoh: Mobil Agustus">
+                        <input type="text" name="details[${index}][name]" class="form-input rounded-md shadow-sm col-span-2 border border-gray-300 w-full" placeholder="Contoh: Mobil Agustus">
                     </td>
                     <td class="border-t p-2">
-                        <input type="number" name="details[${detailIndex}][amount]" class="form-input rounded-md shadow-sm col-span-1 border border-gray-300 w-full" placeholder="800.000">
+                        <input type="number" name="details[${index}][amount]" class="form-input rounded-md shadow-sm col-span-1 border border-gray-300 w-full" placeholder="800.000">
                     </td>
                     <td class="border-t p-2">
                         <button class="bg-blue-500 text-white px-2 py-1 mr-1 rounded-md shadow hover:bg-blue-600">+</button>
@@ -179,32 +183,21 @@
                     </td>
                 `;
 
-                const amountInput = row.querySelector('input[name$="[amount]"]');
-                amountInput.addEventListener('input', updateTotal);
-
                 const plusButton = row.querySelector('button:nth-child(1)');
                 const minusButton = row.querySelector('button:nth-child(2)');
 
-                plusButton.addEventListener('click', () => addRowToTable(tbody));
-                minusButton.addEventListener('click', () => {
+                plusButton.addEventListener('click', (event) => {
+                    event.preventDefault(); // Mencegah pengiriman form
+                    addRowToTable(tbody, index);
+                });
+
+                minusButton.addEventListener('click', (event) => {
+                    event.preventDefault(); // Mencegah pengiriman form
                     row.remove();
-                    updateTotal();
                 });
 
                 tbody.appendChild(row);
             };
-
-            const updateTotal = () => {
-                let total = 0;
-                document.querySelectorAll('input[name$="[amount]"]').forEach(input => {
-                    const amount = parseFloat(input.value) || 0;
-                    total += amount;
-                });
-                document.getElementById('total-amount').textContent = `Total: ${total.toFixed(2)}`;
-            };
-
-            addGroupButton.addEventListener('click', createTransactionGroup);
-            createTransactionGroup();
         });
     </script>
 

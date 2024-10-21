@@ -12,59 +12,47 @@
                     @csrf
                     @method('PUT') <!-- Menambahkan method PUT untuk update data -->
 
-                    <!-- Header Transaksi -->
-                    <div class="grid grid-cols-2 gap-6 mb-6">
-                        <div>
-                            <label class="block text-gray-700" for="description">Deskripsi</label>
-                            <textarea id="description" name="description" class="form-input rounded-md shadow-sm mt-1 block w-full" placeholder="Transaksi Bulan Agustus">{{ old('description', $transaction->description) }}</textarea>
+                    <section id="header-container" class="p-4">
+                        <!-- Header Transaksi -->
+                        <div class="grid grid-cols-2 gap-6 mb-6">
+                            <div>
+                                <label class="block text-gray-700" for="description">Deskripsi</label>
+                                <textarea id="description" name="description" class="form-input rounded-md shadow-sm mt-1 block w-full"
+                                    placeholder="Transaksi Bulan Agustus">{{ old('description', $transaction->description) }}</textarea>
+                            </div>
+                            <div>
+                                <label class="block text-gray-700" for="code">Kode</label>
+                                <input id="code" name="code" type="text"
+                                    class="form-input rounded-md shadow-sm mt-1 block w-full" placeholder="123456"
+                                    value="{{ old('code', $transaction->code) }}">
+                            </div>
+                            <div>
+                                <label class="block text-gray-700" for="rate">Rate Euro</label>
+                                <input id="rate" name="rate_euro" type="number" step="0.01"
+                                    class="form-input rounded-md shadow-sm mt-1 block w-full" placeholder="15.000"
+                                    value="{{ old('rate_euro', $transaction->rate_euro) }}">
+                            </div>
+                            <div>
+                                <label class="block text-gray-700" for="date_paid">Tanggal Bayar</label>
+                                <input id="date_paid" name="date_paid" type="date"
+                                    class="form-input rounded-md shadow-sm mt-1 block w-full"
+                                    value="{{ $transaction->date_paid }}">
+                            </div>
                         </div>
-                        <div>
-                            <label class="block text-gray-700" for="code">Kode</label>
-                            <input id="code" name="code" type="text" class="form-input rounded-md shadow-sm mt-1 block w-full" placeholder="123456" value="{{ old('code', $transaction->code) }}">
-                        </div>
-                        <div>
-                            <label class="block text-gray-700" for="rate">Rate Euro</label>
-                            <input id="rate" name="rate_euro" type="number" step="0.01" class="form-input rounded-md shadow-sm mt-1 block w-full" placeholder="15.000" value="{{ old('rate_euro', $transaction->rate_euro) }}">
-                        </div>
-                        <div>
-                            <label class="block text-gray-700" for="date_paid">Tanggal Bayar</label>
-                            <input id="date_paid" name="date_paid" type="date" class="form-input rounded-md shadow-sm mt-1 block w-full" value="{{ $transaction->date_paid }}">
-                        </div>
-                    </div>
+                    </section>
 
                     <!-- Detail Transaksi -->
-                    <div id="details-container">
-                        @foreach ($transaction->details as $index => $detail)
-                        <div class="mb-4 close p-4 border rounded-lg">
-                            <div class="flex justify-between items-center mb-4">
-                                <label class="block text-gray-700">Kategori</label>
-                                <button type="button" class="remove-category text-red-600">✖</button>
-                            </div>
-                            <select name="details[{{ $index }}][category]" class="form-select rounded-md shadow-sm block w-full mb-4 category-select">
-                                @foreach ($categories as $cat)
-                                    <option value="{{ $cat->id }}" {{ $detail->transaction_category_id == $cat->id ? 'selected' : '' }}>{{ $cat->name }}</option>
-                                @endforeach
-                            </select>
-                            <div class="grid grid-cols-4 gap-4 items-center mb-2">
-                                <label class="block text-gray-700 col-span-2">Nama Transaksi</label>
-                                <label class="block text-gray-700 col-span-2">Nominal (IDR)</label>
-                            </div>
-                            <div class="grid grid-cols-4 gap-4 mb-3">
-                                <input type="text" name="details[{{ $index }}][name]" class="form-input rounded-md shadow-sm col-span-2" placeholder="Contoh: Mobil Agustus" value="{{ old('details.' . $index . '.name', $detail->name) }}">
-                                <input type="number" name="details[{{ $index }}][amount]" class="form-input rounded-md shadow-sm col-span-1" placeholder="800.000" value="{{ old('details.' . $index . '.amount', $detail->value_idr) }}">
-                            </div>
+                    <section id="details-container" class="p-4">
+                        <div class="mb-4 p-4 border border-gray-300 rounded-lg bg-gray-50 shadow-sm">
+                            <h2 class="text-xl font-bold mb-4 text-gray-700">Data Transaksi</h2>
+                            <div id="transactionGroups"></div>
+                            <button id="addGroupButton"
+                                class="bg-green-500 text-white px-4 py-2 mt-4 rounded-md shadow-md hover:bg-green-600 transition-all">
+                                Tambah Kelompok
+                            </button>
+                            <div id="total-amount" class="font-bold mt-4 text-gray-800">Total: 0.00</div>
                         </div>
-                        @endforeach
-                        <button type="button" class="add-category bg-blue-500 text-white px-4 py-2 rounded-md mt-4">Tambah Kategori</button>
-                    </div>
-
-                    <div id="preview-list" class="mt-8 mb-4 p-4 border rounded-lg">
-                        <h4 class="text-lg font-medium">Pratinjau Transaksi Ditambahkan</h4>
-                    </div>
-
-                    <div class="mt-4 p-4 border rounded-lg">
-                        <h4 class="text-lg font-medium">Total: IDR <span id="total-amount">0.00</span></h4>
-                    </div>
+                    </section>
 
                     <div class="mt-6 flex justify-end">
                         <button type="reset" class="bg-red-600 text-white px-4 py-2 rounded-md">Batal</button>
@@ -76,45 +64,111 @@
     </div>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const detailsContainer = document.getElementById('details-container');
-            const detailTemplate = document.querySelector('.detail-template');
-            let detailIndex = {{ count($transaction->details) }};
+        document.addEventListener('DOMContentLoaded', () => {
+            let detailIndex = 0; // Indeks untuk detail transaksi
+            const container = document.getElementById('transactionGroups');
+            const addGroupButton = document.getElementById('addGroupButton');
 
-            document.querySelector('.add-category').addEventListener('click', function() {
-                const newDetail = detailTemplate.cloneNode(true);
-                newDetail.style.display = 'block';
-                newDetail.classList.remove('detail-template');
-    
-                // Update indeks untuk input
-                newDetail.querySelector('select[name="details[0][category]"]').setAttribute('name', `details[${detailIndex}][category]`);
-                newDetail.querySelector('input[name="details[0][name]"]').setAttribute('name', `details[${detailIndex}][name]`);
-                newDetail.querySelector('input[name="details[0][amount]"]').setAttribute('name', `details[${detailIndex}][amount]`);
-    
-                detailsContainer.appendChild(newDetail);
-                detailIndex++; // Increment indeks setelah menambahkan detail baru
-            });
-    
-            detailsContainer.addEventListener('click', function(event) {
-                if (event.target.classList.contains('remove-category')) {
-                    const detail = event.target.closest('.close'); 
-                    if (detail) {
-                        detail.remove(); 
-                        updateTotal(); 
-                    }
-                }
+            // Event listener untuk tombol tambah kelompok
+            addGroupButton.addEventListener('click', (event) => {
+                event.preventDefault();
+                createTransactionGroup();
             });
 
-            // Fungsi untuk menghitung total
-            function updateTotal() {
-                let total = 0;
-                document.querySelectorAll('input[name*="amount"]').forEach(function(input) {
-                    const amount = parseFloat(input.value) || 0;
-                    total += amount;
+            // Fungsi untuk membuat kelompok transaksi baru
+            const createTransactionGroup = () => {
+                const groupDiv = document.createElement('div');
+                groupDiv.classList.add('border', 'p-4', 'mb-4', 'relative', 'bg-white', 'shadow-md', 'rounded-md');
+
+                // Tombol untuk menghapus kelompok
+                const closeButton = document.createElement('button');
+                closeButton.innerText = '×';
+                closeButton.classList.add('absolute', 'top-2', 'right-2', 'text-xl', 'text-red-500', 'hover:text-red-600');
+                closeButton.onclick = () => groupDiv.remove(); // Menghapus kelompok saat diklik
+                groupDiv.appendChild(closeButton);
+
+                // Dropdown kategori
+                const categoryDiv = document.createElement('div');
+                categoryDiv.classList.add('mb-2');
+                const categoryLabel = document.createElement('label');
+                categoryLabel.innerText = 'Kategori';
+                categoryLabel.classList.add('mr-2');
+                const categorySelect = document.createElement('select');
+                categorySelect.classList.add('form-select', 'rounded-md', 'shadow-sm', 'p-2', 'border', 'border-gray-300', 'w-full');
+                categorySelect.name = `details[${detailIndex}][category]`;
+
+                // Daftar kategori, bisa disesuaikan dengan data dari backend
+                const categories = [
+                    { id: 1, name: 'Income' },
+                    { id: 2, name: 'Expense' },
+                ];
+
+                // Menambahkan opsi kategori ke dropdown
+                categories.forEach(category => {
+                    const option = document.createElement('option');
+                    option.value = category.id;
+                    option.textContent = category.name;
+                    categorySelect.appendChild(option);
                 });
-                document.getElementById('total-amount').textContent = total.toFixed(2);
-            }
+
+                categoryDiv.appendChild(categoryLabel);
+                categoryDiv.appendChild(categorySelect);
+                groupDiv.appendChild(categoryDiv);
+
+                // Membuat tabel untuk detail transaksi
+                const table = document.createElement('table');
+                table.classList.add('w-full', 'bg-white', 'border-collapse');
+                table.innerHTML = `
+                    <thead class="bg-gray-100 text-gray-600 uppercase text-sm leading-normal">
+                        <tr>
+                            <th class="py-3 px-6 text-left">Nama Transaksi</th>
+                            <th class="py-3 px-6 text-left">Nominal (IDR)</th>
+                            <th class="py-3 px-6 text-left"></th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                `;
+                groupDiv.appendChild(table);
+                container.appendChild(groupDiv);
+
+                // Menambahkan baris ke tabel
+                addRowToTable(table.querySelector('tbody'), detailIndex);
+                detailIndex++; // Increment indeks untuk detail selanjutnya
+            };
+
+            // Fungsi untuk menambahkan baris ke tabel
+            const addRowToTable = (tbody, index) => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td class="border-t p-4">
+                        <input type="text" name="details[${index}][name]" class="form-input rounded-md shadow-sm col-span-2 border border-gray-300 w-full" placeholder="Contoh: Mobil Agustus">
+                    </td>
+                    <td class="border-t p-2">
+                        <input type="number" name="details[${index}][amount]" class="form-input rounded-md shadow-sm col-span-1 border border-gray-300 w-full" placeholder="800.000">
+                    </td>
+                    <td class="border-t p-2">
+                        <button class="bg-blue-500 text-white px-2 py-1 mr-1 rounded-md shadow hover:bg-blue-600">+</button>
+                        <button class="bg-red-500 text-white px-2 py-1 rounded-md shadow hover:bg-red-600">−</button>
+                    </td>
+                `;
+
+                const plusButton = row.querySelector('button:nth-child(1)');
+                const minusButton = row.querySelector('button:nth-child(2)');
+
+                // Event listener untuk menambah baris
+                plusButton.addEventListener('click', (event) => {
+                    event.preventDefault(); // Mencegah pengiriman form
+                    addRowToTable(tbody, index);
+                });
+
+                // Event listener untuk menghapus baris
+                minusButton.addEventListener('click', (event) => {
+                    event.preventDefault(); // Mencegah pengiriman form
+                    row.remove();
+                });
+
+                tbody.appendChild(row);
+            };
         });
     </script>
-        
 </x-app-layout>

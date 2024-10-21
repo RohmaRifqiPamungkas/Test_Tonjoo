@@ -36,6 +36,8 @@
                                 class="px-4 py-2 bg-gray-200 text-gray-700 rounded">Form</a>
                             <a href="{{ route('transactions.recap') }}"
                                 class="px-4 py-2 bg-gray-200 text-gray-700 rounded">Recap</a>
+                                <a href="{{ route('transactions.fibonacci.form') }}"
+                                class="px-4 py-2 bg-gray-200 text-gray-700 rounded">Hitung Fibonacci</a>                            
                         </div>
                     </div>
 
@@ -44,13 +46,13 @@
                             <div class="flex space-x-4 mb-4">
                                 <a href="{{ route('transactions.index') }}"
                                     class="px-4 py-2 bg-blue-200 text-blue-700 rounded">Reset Filter</a>
-    
+
                                 <input type="date" name="start_date" class="form-input rounded-md shadow-sm"
                                     value="{{ request('start_date') }}">
                                 <input type="date" name="end_date" class="form-input rounded-md shadow-sm"
                                     value="{{ request('end_date') }}">
-    
-                                    <select name="transaction_category_id" id="transaction_category_id"
+
+                                <select name="transaction_category_id" id="transaction_category_id"
                                     class="form-select rounded-md shadow-sm">
                                     <option value="">Select Category</option>
                                     @foreach ($categories as $category)
@@ -60,14 +62,15 @@
                                         </option>
                                     @endforeach
                                 </select>
-    
+
                                 <input type="text" name="search" class="form-input rounded-md shadow-sm"
                                     placeholder="Search" value="{{ request('search') }}">
-    
-                                <button type="submit" class="px-4 py-2 bg-gray-200 text-gray-700 rounded">Search</button>
+
+                                <button type="submit"
+                                    class="px-4 py-2 bg-gray-200 text-gray-700 rounded">Search</button>
                             </div>
                         </form>
-                        
+
                     </div>
 
                     <div class="bg-white shadow-md rounded overflow-x-auto">
