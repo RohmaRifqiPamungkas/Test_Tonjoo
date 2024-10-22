@@ -10,7 +10,7 @@
             <div class="bg-white shadow-xl sm:rounded-lg p-6">
                 <form id="transaction-form" action="{{ route('transactions.update', $transaction->id) }}" method="POST">
                     @csrf
-                    @method('PUT') <!-- Menambahkan method PUT untuk update data -->
+                    @method('PUT')
 
                     <section id="header-container" class="p-4">
                         <!-- Header Transaksi -->
@@ -97,13 +97,11 @@
                 categorySelect.classList.add('form-select', 'rounded-md', 'shadow-sm', 'p-2', 'border', 'border-gray-300', 'w-full');
                 categorySelect.name = `details[${detailIndex}][category]`;
 
-                // Daftar kategori, bisa disesuaikan dengan data dari backend
                 const categories = [
-                    { id: 1, name: 'Income' },
-                    { id: 2, name: 'Expense' },
+                    { id: 1, name: 'Expense' },
+                    { id: 2, name: 'Income' },
                 ];
 
-                // Menambahkan opsi kategori ke dropdown
                 categories.forEach(category => {
                     const option = document.createElement('option');
                     option.value = category.id;
@@ -115,7 +113,6 @@
                 categoryDiv.appendChild(categorySelect);
                 groupDiv.appendChild(categoryDiv);
 
-                // Membuat tabel untuk detail transaksi
                 const table = document.createElement('table');
                 table.classList.add('w-full', 'bg-white', 'border-collapse');
                 table.innerHTML = `
@@ -131,12 +128,10 @@
                 groupDiv.appendChild(table);
                 container.appendChild(groupDiv);
 
-                // Menambahkan baris ke tabel
                 addRowToTable(table.querySelector('tbody'), detailIndex);
-                detailIndex++; // Increment indeks untuk detail selanjutnya
+                detailIndex++; 
             };
 
-            // Fungsi untuk menambahkan baris ke tabel
             const addRowToTable = (tbody, index) => {
                 const row = document.createElement('tr');
                 row.innerHTML = `
@@ -155,13 +150,11 @@
                 const plusButton = row.querySelector('button:nth-child(1)');
                 const minusButton = row.querySelector('button:nth-child(2)');
 
-                // Event listener untuk menambah baris
                 plusButton.addEventListener('click', (event) => {
                     event.preventDefault(); // Mencegah pengiriman form
                     addRowToTable(tbody, index);
                 });
 
-                // Event listener untuk menghapus baris
                 minusButton.addEventListener('click', (event) => {
                     event.preventDefault(); // Mencegah pengiriman form
                     row.remove();

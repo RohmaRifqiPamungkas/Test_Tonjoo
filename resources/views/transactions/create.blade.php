@@ -101,21 +101,27 @@
             let detailIndex = 0;
             const container = document.getElementById('transactionGroups');
             const addGroupButton = document.getElementById('addGroupButton');
+            const totalAmountElement = document.getElementById('total-amount');
 
             addGroupButton.addEventListener('click', (event) => {
                 event.preventDefault();
-
                 createTransactionGroup();
+                updateTotalAmount();
             });
 
             const createTransactionGroup = () => {
                 const groupDiv = document.createElement('div');
-                groupDiv.classList.add('border', 'p-4', 'mb-4', 'relative', 'bg-white', 'shadow-md', 'rounded-md');
+                groupDiv.classList.add('border', 'p-4', 'mb-4', 'relative', 'bg-white', 'shadow-md',
+                    'rounded-md');
 
                 const closeButton = document.createElement('button');
                 closeButton.innerText = '×';
-                closeButton.classList.add('absolute', 'top-2', 'right-2', 'text-xl', 'text-red-500', 'hover:text-red-600');
-                closeButton.onclick = () => groupDiv.remove();
+                closeButton.classList.add('absolute', 'top-2', 'right-2', 'text-xl', 'text-red-500',
+                    'hover:text-red-600');
+                closeButton.onclick = () => {
+                    groupDiv.remove();
+                    updateTotalAmount();
+                };
                 groupDiv.appendChild(closeButton);
 
                 const categoryDiv = document.createElement('div');
@@ -124,18 +130,17 @@
                 categoryLabel.innerText = 'Category';
                 categoryLabel.classList.add('mr-2');
                 const categorySelect = document.createElement('select');
-                categorySelect.classList.add('form-select', 'rounded-md', 'shadow-sm', 'p-2', 'border', 'border-gray-300', 'w-full');
+                categorySelect.classList.add('form-select', 'rounded-md', 'shadow-sm', 'p-2', 'border',
+                    'border-gray-300', 'w-full');
                 categorySelect.name = `details[${detailIndex}][category]`;
 
                 const categories = [{
-                        id: 1,
-                        name: 'Income'
-                    },
-                    {
-                        id: 2,
-                        name: 'Expense'
-                    },
-                ];
+                    id: 1,
+                    name: 'Expense'
+                }, {
+                    id: 2,
+                    name: 'Income'
+                }];
 
                 categories.forEach(category => {
                     const option = document.createElement('option');
@@ -147,56 +152,75 @@
                 categoryDiv.appendChild(categoryLabel);
                 categoryDiv.appendChild(categorySelect);
                 groupDiv.appendChild(categoryDiv);
-
+ 
                 const table = document.createElement('table');
                 table.classList.add('w-full', 'bg-white', 'border-collapse');
                 table.innerHTML = `
-                    <thead class="bg-gray-100 text-gray-600 uppercase text-sm leading-normal">
-                        <tr>
-                            <th class="py-3 px-6 text-left">Nama Transaksi</th>
-                            <th class="py-3 px-6 text-left">Nominal (IDR)</th>
-                            <th class="py-3 px-6 text-left"></th>
-                        </tr>
-                    </thead>
-                    <tbody></tbody>
-        `;
+                <thead class="bg-gray-100 text-gray-600 uppercase text-sm leading-normal">
+                    <tr>
+                        <th class="py-3 px-6 text-left">Nama Transaksi</th>
+                        <th class="py-3 px-6 text-left">Nominal (IDR)</th>
+                        <th class="py-3 px-6 text-left"></th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            `;
                 groupDiv.appendChild(table);
                 container.appendChild(groupDiv);
 
                 addRowToTable(table.querySelector('tbody'), detailIndex);
-
                 detailIndex++;
             };
 
             const addRowToTable = (tbody, index) => {
                 const row = document.createElement('tr');
                 row.innerHTML = `
-                    <td class="border-t p-4">
-                        <input type="text" name="details[${index}][name]" class="form-input rounded-md shadow-sm col-span-2 border border-gray-300 w-full" placeholder="Contoh: Mobil Agustus">
-                    </td>
-                    <td class="border-t p-2">
-                        <input type="number" name="details[${index}][amount]" class="form-input rounded-md shadow-sm col-span-1 border border-gray-300 w-full" placeholder="800.000">
-                    </td>
-                    <td class="border-t p-2">
-                        <button class="bg-blue-500 text-white px-2 py-1 mr-1 rounded-md shadow hover:bg-blue-600">+</button>
-                        <button class="bg-red-500 text-white px-2 py-1 rounded-md shadow hover:bg-red-600">−</button>
-                    </td>
-                `;
+                <td class="border-t p-4">
+                    <input type="text" name="details[${index}][name]" class="form-input rounded-md shadow-sm col-span-2 border border-gray-300 w-full" placeholder="Contoh: Mobil Agustus">
+                </td>
+                <td class="border-t p-2">
+                    <input type="number" name="details[${index}][amount]" class="form-input amount-input rounded-md shadow-sm col-span-1 border border-gray-300 w-full" placeholder="800.000">
+                </td>
+                <td class="border-t p-2">
+                    <button class="bg-blue-500 text-white px-2 py-1 mr-1 rounded-md shadow hover:bg-blue-600">+</button>
+                    <button class="bg-red-500 text-white px-2 py-1 rounded-md shadow hover:bg-red-600">−</button>
+                </td>
+            `;
 
+                const amountInput = row.querySelector('.amount-input');
                 const plusButton = row.querySelector('button:nth-child(1)');
                 const minusButton = row.querySelector('button:nth-child(2)');
 
                 plusButton.addEventListener('click', (event) => {
-                    event.preventDefault(); // Mencegah pengiriman form
+                    event.preventDefault();
                     addRowToTable(tbody, index);
+                    updateTotalAmount();
                 });
 
                 minusButton.addEventListener('click', (event) => {
-                    event.preventDefault(); // Mencegah pengiriman form
+                    event.preventDefault();
                     row.remove();
+                    updateTotalAmount();
                 });
 
+                amountInput.addEventListener('input', updateTotalAmount);
+
                 tbody.appendChild(row);
+            };
+
+            const updateTotalAmount = () => {
+                const amounts = document.querySelectorAll('.amount-input');
+                let total = 0;
+
+                amounts.forEach(amountInput => {
+                    const value = parseFloat(amountInput.value);
+                    if (!isNaN(value)) {
+                        total += value;
+                    }
+                });
+
+                totalAmountElement.innerText =
+                    `Total: ${total.toLocaleString('id-ID', { style: 'currency', currency: 'IDR' })}`;
             };
         });
     </script>
