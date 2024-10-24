@@ -21,6 +21,14 @@ class TransactionController extends Controller
         $endDate = $request->input('end_date');
         $perPage = $request->input('perPage', 10);
 
+        if ($startDate && $endDate && $startDate > $endDate) {
+            return redirect()->route('transactions.index')
+                             ->withErrors(['end_date' => 'The end date cannot be earlier than the start date.'])
+                             ->withInput(); 
+        }
+
+        $query = TransactionHeader::with('details.category');
+        
         if ($search) {
             $query->where('description', 'like', "%{$search}%")
                 ->orWhere('code', 'like', "%{$search}%")
@@ -93,6 +101,13 @@ class TransactionController extends Controller
         return redirect()->route('transactions.index')->with('error', 'Failed to create transaction.');
     }
 
+    public function show($id)
+    {
+        $transaction = TransactionHeader::with('details.category')->findOrFail($id);
+
+        return view('transactions.show', compact('transaction'));
+    }
+    
     public function edit(TransactionHeader $transaction)
     {
         $categories = MsCategory::all();
@@ -147,6 +162,7 @@ class TransactionController extends Controller
     {
         $categories = MsCategory::all();
         $query = TransactionHeader::with('details.category');
+            
         $startDate = $request->input('start_date');
         $transactionCategoryId = $request->input('transaction_category_id');
         $endDate = $request->input('end_date');
@@ -173,6 +189,12 @@ class TransactionController extends Controller
 
         $transactions = $query->get();
 
-        return view('transactions.recap', compact('transactions', 'startDate', 'endDate', 'category', 'search', 'transactionCategoryId', 'categories'));
+        $totalValueIdr = $transactions->reduce(function ($carry, $transaction) {
+            return $carry + $transaction->details->sum('value_idr');
+        }, 0);
+        
+        $totalRateEuro = $transactions->sum('rate_euro');
+
+        return view('transactions.recap', compact('transactions', 'startDate', 'endDate', 'category', 'search', 'transactionCategoryId', 'categories', 'totalValueIdr', 'totalRateEuro'));
     }
 }

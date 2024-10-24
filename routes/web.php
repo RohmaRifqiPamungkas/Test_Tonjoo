@@ -24,8 +24,9 @@ Route::middleware([
     // Additional Route for Recap
     Route::get('/transactions/recap', [TransactionController::class, 'recap'])->name('transactions.recap');
     Route::get('/transactions/create', [TransactionController::class, 'create'])->name('transactions.create');
-    
+
     Route::get('/transactions/fibonacci/{n1}/{n2}', [NumbersController::class, 'fibonacciSum'])->name('transactions.fibonacci');
+    Route::get('/transactions/{id}', [TransactionController::class, 'show'])->name('transactions.show');
 
     Route::get('/transactions/fibonacci', function () {
         return view('transactions.fibonacci');

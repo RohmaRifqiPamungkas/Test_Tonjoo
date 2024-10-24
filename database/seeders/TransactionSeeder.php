@@ -13,21 +13,14 @@ class TransactionSeeder extends Seeder
     {
         // Buat 50 data TransactionHeader
         TransactionHeader::factory(50)->create()->each(function ($transaction) {
-            $incomeCategory = MsCategory::where('name', 'Income')->first();
-            $expenseCategory = MsCategory::where('name', 'Expense')->first();
+            // Pilih salah satu kategori secara acak (Income atau Expense)
+            $randomCategory = MsCategory::inRandomOrder()->first();
 
-            // Tambahkan detail acak untuk setiap transaksi
+            // Tambahkan detail acak untuk setiap transaksi dengan satu kategori saja
             TransactionDetail::create([
                 'transaction_id' => $transaction->id,
-                'transaction_category_id' => $incomeCategory->id,
-                'name' => 'Transaksi Pemasukan ' . $transaction->code,
-                'value_idr' => rand(100000, 1000000),
-            ]);
-
-            TransactionDetail::create([
-                'transaction_id' => $transaction->id,
-                'transaction_category_id' => $expenseCategory->id,
-                'name' => 'Transaksi Pengeluaran ' . $transaction->code,
+                'transaction_category_id' => $randomCategory->id,
+                'name' => 'Transaksi ' . $randomCategory->name . ' ' . $transaction->code,
                 'value_idr' => rand(100000, 1000000),
             ]);
         });

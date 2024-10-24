@@ -31,6 +31,7 @@
                                             d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
                                     </svg>
                                 </button>
+                                
                             </x-slot>
 
                             <x-slot name="content">

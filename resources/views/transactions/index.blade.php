@@ -36,8 +36,8 @@
                                 class="px-4 py-2 bg-gray-200 text-gray-700 rounded">Form</a>
                             <a href="{{ route('transactions.recap') }}"
                                 class="px-4 py-2 bg-gray-200 text-gray-700 rounded">Recap</a>
-                                <a href="{{ route('transactions.fibonacci.form') }}"
-                                class="px-4 py-2 bg-gray-200 text-gray-700 rounded">Hitung Fibonacci</a>                            
+                            <a href="{{ route('transactions.fibonacci.form') }}"
+                                class="px-4 py-2 bg-gray-200 text-gray-700 rounded">Hitung Fibonacci</a>
                         </div>
                     </div>
 
@@ -69,6 +69,7 @@
                                 <button type="submit"
                                     class="px-4 py-2 bg-gray-200 text-gray-700 rounded">Search</button>
                             </div>
+
                         </form>
 
                     </div>
@@ -139,16 +140,13 @@
                                                 </button>
                                                 <div id="menu-{{ $transaction->id }}"
                                                     class="hidden absolute right-0 mt-2 w-48 bg-white border rounded shadow-md">
-                                                    <a href="{{ route('transactions.edit', $transaction->id) }}"
-                                                        class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Edit</a>
-                                                    <form
-                                                        action="{{ route('transactions.destroy', $transaction->id) }}"
-                                                        method="POST">
+                                                    <a href="{{ route('transactions.edit', $transaction->id) }}" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Edit</a>
+                                                    <a href="{{ route('transactions.show', $transaction->id) }}" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">View</a>
+                                                    <form action="{{ route('transactions.destroy', $transaction->id) }}" method="POST">
                                                         @csrf
+
                                                         @method('DELETE')
-                                                        <button
-                                                            class="block w-full text-left px-4 py-2 text-gray-700 hover:bg-gray-100"
-                                                            onclick="return confirm('Are you sure?')">Delete</button>
+                                                        <button class="block w-full text-left px-4 py-2 text-gray-700 hover:bg-gray-100" onclick="return confirm('Are you sure?')">Delete</button>
                                                     </form>
                                                 </div>
                                             </div>
@@ -164,16 +162,14 @@
                         <p>{{ $transactions->total() }} row(s) selected.</p>
                     </div>
 
-                    {{-- Form untuk pemilihan jumlah data per halaman --}}
                     <form method="GET" action="{{ route('transactions.index') }}" class="flex justify-between mt-4">
-                        {{-- Dropdown untuk memilih jumlah data per halaman --}}
                         <select name="perPage" class="form-select rounded-md shadow-sm" onchange="this.form.submit()">
                             <option value="10" {{ request('perPage') == 10 ? 'selected' : '' }}>10</option>
                             <option value="20" {{ request('perPage') == 20 ? 'selected' : '' }}>20</option>
                             <option value="50" {{ request('perPage') == 50 ? 'selected' : '' }}>50</option>
+                            <option value="100" {{ request('perPage') == 100 ? 'selected' : '' }}>100</option>
                         </select>
 
-                        {{-- Navigasi halaman --}}
                         <div class="flex items-center">
                             {{-- Tombol Previous --}}
                             @if ($transactions->onFirstPage())

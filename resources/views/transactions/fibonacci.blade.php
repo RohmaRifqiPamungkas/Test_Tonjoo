@@ -9,6 +9,37 @@
         <div class="max-w-full mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
+                    <div class="block mb-8">
+                        <!-- Menampilkan pesan error -->
+                        @if ($errors->any())
+                            <div class="p-3 rounded bg-red-500 text-white mb-4">
+                                <h4 class="font-bold">There were some errors:</h4>
+                                <ul class="list-disc ml-5">
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
+
+                        <!-- Menampilkan pesan sukses -->
+                        @if (session('success'))
+                            <div class="p-3 rounded bg-green-500 text-green-100 mb-4">
+                                {{ session('success') }}
+                            </div>
+                        @endif
+
+                        <div class="flex space-x-4">
+                            <a href="{{ route('transactions.index') }}"
+                                class="px-4 py-2 bg-gray-200 text-gray-700 rounded">List</a>
+                            <a href="{{ route('transactions.create') }}"
+                                class="px-4 py-2 bg-gray-200 text-gray-700 rounded">Form</a>
+                            <a href="{{ route('transactions.recap') }}"
+                                class="px-4 py-2 bg-gray-200 text-gray-700 rounded">Recap</a>
+                            <a href="{{ route('transactions.fibonacci.form') }}"
+                                class="px-4 py-2 bg-gray-200 text-gray-700 rounded">Hitung Fibonacci</a>
+                        </div>
+                    </div>
 
                     <form action="{{ route('transactions.fibonacci', ['n1' => 'N1', 'n2' => 'N2']) }}" method="GET">
                         @csrf
