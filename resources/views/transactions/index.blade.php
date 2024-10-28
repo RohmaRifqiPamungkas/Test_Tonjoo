@@ -44,16 +44,16 @@
                     <div class="flex gap-4 mb-4">
                         <form action="{{ route('transactions.index') }}" method="GET">
                             <div class="flex space-x-4 mb-4">
-                                <a href="{{ route('transactions.index') }}"
-                                    class="px-4 py-2 bg-blue-200 text-blue-700 rounded">Reset Filter</a>
+                                <a href="{{ route('transactions.index') }}" id="reset-filter-btn"
+                                    class="px-4 py-2 bg-blue-200 text-blue-700 rounded hidden">Reset Filter</a>
 
                                 <input type="date" name="start_date" class="form-input rounded-md shadow-sm"
-                                    value="{{ request('start_date') }}">
+                                    value="{{ request('start_date') }}" oninput="checkInputFields()">
                                 <input type="date" name="end_date" class="form-input rounded-md shadow-sm"
-                                    value="{{ request('end_date') }}">
+                                    value="{{ request('end_date') }}" oninput="checkInputFields()">
 
                                 <select name="transaction_category_id" id="transaction_category_id"
-                                    class="form-select rounded-md shadow-sm">
+                                    class="form-select rounded-md shadow-sm" onchange="checkInputFields()">
                                     <option value="">Select Category</option>
                                     @foreach ($categories as $category)
                                         <option value="{{ $category->id }}"
@@ -64,14 +64,12 @@
                                 </select>
 
                                 <input type="text" name="search" class="form-input rounded-md shadow-sm"
-                                    placeholder="Search" value="{{ request('search') }}">
+                                    placeholder="Search" value="{{ request('search') }}" oninput="checkInputFields()">
 
                                 <button type="submit"
                                     class="px-4 py-2 bg-gray-200 text-gray-700 rounded">Search</button>
                             </div>
-
                         </form>
-
                     </div>
 
                     <div class="bg-white shadow-md rounded overflow-x-auto">
@@ -92,7 +90,6 @@
                             <tbody class="text-gray-600 text-sm font-light">
                                 @foreach ($transactions as $index => $transaction)
                                     <tr class="border-b border-gray-200 hover:bg-gray-100">
-                                        <!-- Menampilkan nomor urut yang melanjutkan dari halaman sebelumnya -->
                                         <td class="py-3 px-6 text-left whitespace-nowrap">
                                             {{ $loop->iteration + $transactions->perPage() * ($transactions->currentPage() - 1) }}
                                         </td>
@@ -103,7 +100,6 @@
                                             {{ \Carbon\Carbon::parse($transaction->date_paid)->format('d M Y') }}
                                         </td>
 
-                                        <!-- Menampilkan Kategori dari Detail -->
                                         <td class="py-3 px-6">
                                             @if ($transaction->details->isNotEmpty())
                                                 @foreach ($transaction->details as $detail)
@@ -117,7 +113,6 @@
                                             @endif
                                         </td>
 
-                                        <!-- Nama Transaksi dan Nominal -->
                                         @if ($transaction->details->isNotEmpty())
                                             <td class="py-3 px-6">{{ $transaction->details[0]->name }}</td>
                                             <td class="py-3 px-6">
@@ -127,7 +122,6 @@
                                             <td class="py-3 px-6">-</td>
                                         @endif
 
-                                        <!-- Actions -->
                                         <td class="py-3 px-6 text-center">
                                             <div class="relative inline-block text-left">
                                                 <button onclick="toggleMenu({{ $transaction->id }})"
@@ -140,13 +134,18 @@
                                                 </button>
                                                 <div id="menu-{{ $transaction->id }}"
                                                     class="hidden absolute right-0 mt-2 w-48 bg-white border rounded shadow-md">
-                                                    <a href="{{ route('transactions.edit', $transaction->id) }}" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Edit</a>
-                                                    <a href="{{ route('transactions.show', $transaction->id) }}" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">View</a>
-                                                    <form action="{{ route('transactions.destroy', $transaction->id) }}" method="POST">
+                                                    <a href="{{ route('transactions.edit', $transaction->id) }}"
+                                                        class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Edit</a>
+                                                    <a href="{{ route('transactions.show', $transaction->id) }}"
+                                                        class="block px-4 py-2 text-gray-700 hover:bg-gray-100">View</a>
+                                                    <form
+                                                        action="{{ route('transactions.destroy', $transaction->id) }}"
+                                                        method="POST">
                                                         @csrf
-
                                                         @method('DELETE')
-                                                        <button class="block w-full text-left px-4 py-2 text-gray-700 hover:bg-gray-100" onclick="return confirm('Are you sure?')">Delete</button>
+                                                        <button
+                                                            class="block w-full text-left px-4 py-2 text-gray-700 hover:bg-gray-100"
+                                                            onclick="return confirm('Are you sure?')">Delete</button>
                                                     </form>
                                                 </div>
                                             </div>
@@ -155,7 +154,6 @@
                                 @endforeach
                             </tbody>
                         </table>
-
                     </div>
 
                     <div class="mt-4">
@@ -165,46 +163,47 @@
                     <form method="GET" action="{{ route('transactions.index') }}" class="flex justify-between mt-4">
                         <select name="perPage" class="form-select rounded-md shadow-sm" onchange="this.form.submit()">
                             <option value="10" {{ request('perPage') == 10 ? 'selected' : '' }}>10</option>
-                            <option value="20" {{ request('perPage') == 20 ? 'selected' : '' }}>20</option>
+                            <option value="25" {{ request('perPage') == 25 ? 'selected' : '' }}>25</option>
                             <option value="50" {{ request('perPage') == 50 ? 'selected' : '' }}>50</option>
                             <option value="100" {{ request('perPage') == 100 ? 'selected' : '' }}>100</option>
                         </select>
-
-                        <div class="flex items-center">
-                            {{-- Tombol Previous --}}
-                            @if ($transactions->onFirstPage())
-                                <button class="px-4 py-2 bg-gray-200 text-gray-700 rounded" disabled>Previous</button>
-                            @else
-                                <a href="{{ $transactions->appends(['perPage' => request('perPage'), 'search' => request('search')])->previousPageUrl() }}"
-                                    class="px-4 py-2 bg-gray-200 text-gray-700 rounded">Previous</a>
-                            @endif
-
-                            {{-- Tombol Next --}}
-                            @if ($transactions->hasMorePages())
-                                <a href="{{ $transactions->appends(['perPage' => request('perPage'), 'search' => request('search')])->nextPageUrl() }}"
-                                    class="px-4 py-2 bg-gray-200 text-gray-700 rounded ml-2">Next</a>
-                            @else
-                                <button class="px-4 py-2 bg-gray-200 text-gray-700 rounded ml-2" disabled>Next</button>
-                            @endif
-                        </div>
+                        {{ $transactions->links() }}
                     </form>
-
                 </div>
             </div>
         </div>
     </div>
 
     <script>
-        function toggleMenu(id) {
-            const menu = document.getElementById('menu-' + id);
+        function toggleMenu(transactionId) {
+            const menu = document.getElementById(`menu-${transactionId}`);
             menu.classList.toggle('hidden');
         }
-        document.addEventListener('click', function(event) {
-            if (!event.target.closest('.relative')) {
-                document.querySelectorAll('.relative div').forEach(function(menu) {
-                    menu.classList.add('hidden');
+
+        // Menutup menu jika mengklik di luar
+        window.onclick = function(event) {
+            if (!event.target.matches('.focus:outline-none')) {
+                const dropdowns = document.querySelectorAll('.absolute');
+                dropdowns.forEach(dropdown => {
+                    dropdown.classList.add('hidden');
                 });
             }
-        });
+        }
+
+        function checkInputFields() {
+            const startDate = document.querySelector('input[name="start_date"]').value;
+            const endDate = document.querySelector('input[name="end_date"]').value;
+            const categorySelect = document.getElementById('transaction_category_id').value;
+            const searchInput = document.querySelector('input[name="search"]').value;
+
+            const resetButton = document.getElementById('reset-filter-btn');
+
+            // Cek jika salah satu input tidak kosong
+            if (startDate || endDate || categorySelect || searchInput) {
+                resetButton.classList.remove('hidden'); // Tampilkan tombol
+            } else {
+                resetButton.classList.add('hidden'); // Sembunyikan tombol
+            }
+        }
     </script>
 </x-app-layout>

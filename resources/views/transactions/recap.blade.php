@@ -41,36 +41,38 @@
                         </div>
                     </div>
 
-                    <form action="{{ route('transactions.recap') }}" method="GET">
-                        <div class="flex space-x-4 mb-4">
-                            <a href="{{ route('transactions.recap') }}"
-                                class="px-4 py-2 bg-blue-200 text-blue-700 rounded">Reset Filter</a>
+                    <div class="flex gap-4 mb-4">
+                        <form action="{{ route('transactions.index') }}" method="GET">
+                            <div class="flex space-x-4 mb-4">
+                                <a href="{{ route('transactions.index') }}" id="reset-filter-btn"
+                                    class="px-4 py-2 bg-blue-200 text-blue-700 rounded hidden">Reset Filter</a>
 
-                            <input type="date" name="start_date" class="form-input rounded-md shadow-sm"
-                                value="{{ request('start_date') }}">
-                            <input type="date" name="end_date" class="form-input rounded-md shadow-sm"
-                                value="{{ request('end_date') }}">
+                                <input type="date" name="start_date" class="form-input rounded-md shadow-sm"
+                                    value="{{ request('start_date') }}" oninput="checkInputFields()">
+                                <input type="date" name="end_date" class="form-input rounded-md shadow-sm"
+                                    value="{{ request('end_date') }}" oninput="checkInputFields()">
 
-                            <select name="transaction_category_id" id="transaction_category_id"
-                                class="form-select rounded-md shadow-sm">
-                                <option value="">Select Category</option>
-                                @foreach ($categories as $category)
-                                    <option value="{{ $category->id }}"
-                                        {{ request('transaction_category_id') == $category->id ? 'selected' : '' }}>
-                                        {{ $category->name }}
-                                    </option>
-                                @endforeach
-                            </select>
+                                <select name="transaction_category_id" id="transaction_category_id"
+                                    class="form-select rounded-md shadow-sm" onchange="checkInputFields()">
+                                    <option value="">Select Category</option>
+                                    @foreach ($categories as $category)
+                                        <option value="{{ $category->id }}"
+                                            {{ request('transaction_category_id') == $category->id ? 'selected' : '' }}>
+                                            {{ $category->name }}
+                                        </option>
+                                    @endforeach
+                                </select>
 
-                            <input type="text" name="search" class="form-input rounded-md shadow-sm"
-                                placeholder="Search" value="{{ request('search') }}">
+                                <input type="text" name="search" class="form-input rounded-md shadow-sm"
+                                    placeholder="Search" value="{{ request('search') }}" oninput="checkInputFields()">
 
-                            <button type="submit" class="px-4 py-2 bg-gray-200 text-gray-700 rounded">Search</button>
-                        </div>
-                    </form>
+                                <button type="submit"
+                                    class="px-4 py-2 bg-gray-200 text-gray-700 rounded">Search</button>
+                            </div>
+                        </form>
+                    </div>
 
-
-                    @if (isset($transactions))
+                    @if ($transactions->isNotEmpty())
                         <div class="bg-white shadow-md rounded overflow-x-auto">
                             <table class="w-full bg-white">
                                 <thead class="bg-gray-100 text-gray-600 uppercase text-sm leading-normal">
@@ -89,23 +91,23 @@
                                             <td class="py-3 px-6">{{ \Carbon\Carbon::parse($transaction->date_paid)->format('Y-m-d') }}</td>
                                             <td class="py-3 px-6">{{ \Carbon\Carbon::parse($transaction->created_at) }}</td>
                                             <td class="py-3 px-6">
-                                                @foreach ($transaction->details as $detail)
-                                                    <span class="px-3 py-1 text-xs text-white bg-gray-500 rounded-full">
-                                                        {{ $detail->category ? $detail->category->name : 'No Category' }}
-                                                    </span>
-                                                @endforeach
+                                                <span class="px-3 py-1 text-xs text-white bg-gray-500 rounded-full">
+                                                    {{ $transaction->category_name }}
+                                                </span>
                                             </td>
-                                            <td class="py-3 px-6">{{ number_format($transaction->details->sum('value_idr'), 0, ',', '.') }}</td>
+                                            <td class="py-3 px-6">
+                                                {{ number_format($transaction->value_idr, 0, ',', '.') }}
+                                            </td>
                                         </tr>
                                     @endforeach
                                 </tbody>
                             </table>
                         </div>
-                        <!-- Total Sum of Value IDR and Rate Euro -->
+                        <!-- Total Summary -->
                         <div class="p-6 bg-white border-b border-gray-200">
                             <h3 class="font-bold text-lg">Total Summary:</h3>
-                            <p>Total Value (IDR): {{ number_format($totalValueIdr, 0, ',', '.') }}</p>
-                            <p>Total Rate (Euro): {{ number_format($totalRateEuro, 2, ',', '.') }}</p>
+                            <p>Total Value (IDR): {{ number_format($transactions->sum('total_value_idr'), 0, ',', '.') }}</p>
+                            <p>Total Rate (Euro): {{ number_format($transactions->sum('total_value_euro'), 2, ',', '.') }}</p>
                         </div>
                     @else
                         <p class="text-gray-500">No transactions found.</p>
@@ -114,4 +116,22 @@
             </div>
         </div>
     </div>
+
+    <script>
+        function checkInputFields() {
+            const startDate = document.querySelector('input[name="start_date"]').value;
+            const endDate = document.querySelector('input[name="end_date"]').value;
+            const categorySelect = document.getElementById('transaction_category_id').value;
+            const searchInput = document.querySelector('input[name="search"]').value;
+
+            const resetButton = document.getElementById('reset-filter-btn');
+
+            // Cek jika salah satu input tidak kosong
+            if (startDate || endDate || categorySelect || searchInput) {
+                resetButton.classList.remove('hidden'); // Tampilkan tombol
+            } else {
+                resetButton.classList.add('hidden'); // Sembunyikan tombol
+            }
+        }
+    </script>
 </x-app-layout>

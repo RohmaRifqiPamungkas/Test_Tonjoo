@@ -191,21 +191,17 @@
                 const plusButton = row.querySelector('button:nth-child(1)');
                 const minusButton = row.querySelector('button:nth-child(2)');
 
-                plusButton.onclick = (event) => {
+                plusButton.addEventListener('click', (event) => {
                     event.preventDefault();
-                    const value = parseFloat(amountInput.value) || 0;
-                    amountInput.value = value + 1;
+                    addRowToTable(tbody, index);
                     updateTotalAmount();
-                };
+                });
 
-                minusButton.onclick = (event) => {
+                minusButton.addEventListener('click', (event) => {
                     event.preventDefault();
-                    const value = parseFloat(amountInput.value) || 0;
-                    if (value > 0) {
-                        amountInput.value = value - 1;
-                        updateTotalAmount();
-                    }
-                };
+                    row.remove();
+                    updateTotalAmount();
+                });
 
                 tbody.appendChild(row);
             };
@@ -223,3 +219,4 @@
         });
     </script>
 </x-app-layout>
+
