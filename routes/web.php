@@ -5,7 +5,7 @@ use App\Http\Controllers\NumbersController;
 use App\Http\Controllers\TransactionController;
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('/auth/login');
 });
 
 Route::middleware([
@@ -26,10 +26,10 @@ Route::middleware([
     Route::get('/transactions/create', [TransactionController::class, 'create'])->name('transactions.create');
 
     Route::get('/transactions/fibonacci/{n1}/{n2}', [NumbersController::class, 'fibonacciSum'])->name('transactions.fibonacci');
-    
+
     Route::get('/transactions/fibonacci', function () {
         return view('transactions.fibonacci');
     })->name('transactions.fibonacci.form');
-    
+
     Route::get('/transactions/{id}', [TransactionController::class, 'show'])->name('transactions.show');
 });

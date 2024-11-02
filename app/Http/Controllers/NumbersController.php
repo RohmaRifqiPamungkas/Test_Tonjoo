@@ -27,12 +27,16 @@ class NumbersController extends Controller
     // Fungsi untuk menjumlahkan dua bilangan Fibonacci
     public function fibonacciSum(Request $request, $n1, $n2)
     {
-        // Validasi manual input $n1 dan $n2 karena berasal dari parameter URL
-        if (!is_numeric($n1) || !is_numeric($n2) || $n1 < 0 || $n2 < 0 || $n1 > 40 || $n2 > 40) {
-            return response()->json(['error' => 'Invalid input. n1 and n2 must be integers between 0 and 40.'], 400);
-        }
+        // Validasi input untuk memastikan n1 dan n2 dalam rentang yang benar
+        $validatedData = $request->validate([
+            'n1' => 'required|integer|min:0|max:40',
+            'n2' => 'required|integer|min:0|max:40',
+        ]);
 
-        // Lanjutkan perhitungan Fibonacci
+        // Ambil nilai n1 dan n2 dari request
+        $n1 = $validatedData['n1'];
+        $n2 = $validatedData['n2'];
+
         $fibo1 = $this->fibonacci($n1);
         $fibo2 = $this->fibonacci($n2);
         $result = $fibo1 + $fibo2;

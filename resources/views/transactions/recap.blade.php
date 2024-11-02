@@ -88,27 +88,40 @@
                                     @foreach ($transactions as $index => $transaction)
                                         <tr class="border-b border-gray-200 hover:bg-gray-100">
                                             <td class="py-3 px-6">{{ $loop->iteration }}</td>
-                                            <td class="py-3 px-6">{{ \Carbon\Carbon::parse($transaction->date_paid)->format('Y-m-d') }}</td>
-                                            <td class="py-3 px-6">{{ \Carbon\Carbon::parse($transaction->created_at) }}</td>
+                                            <td class="py-3 px-6">
+                                                {{ \Carbon\Carbon::parse($transaction->date_paid)->format('Y-m-d') }}
+                                            </td>
+                                            <td class="py-3 px-6">{{ \Carbon\Carbon::parse($transaction->created_at) }}
+                                            </td>
                                             <td class="py-3 px-6">
                                                 <span class="px-3 py-1 text-xs text-white bg-gray-500 rounded-full">
                                                     {{ $transaction->category_name }}
                                                 </span>
                                             </td>
                                             <td class="py-3 px-6">
-                                                {{ number_format($transaction->value_idr, 0, ',', '.') }}
+                                                {{ number_format($transaction->total_value_idr, 2) }}
                                             </td>
                                         </tr>
                                     @endforeach
                                 </tbody>
                             </table>
                         </div>
-                        <!-- Total Summary -->
-                        <div class="p-6 bg-white border-b border-gray-200">
-                            <h3 class="font-bold text-lg">Total Summary:</h3>
-                            <p>Total Value (IDR): {{ number_format($transactions->sum('total_value_idr'), 0, ',', '.') }}</p>
-                            <p>Total Rate (Euro): {{ number_format($transactions->sum('total_value_euro'), 2, ',', '.') }}</p>
+
+                        <div class="mt-4">
+                            <p>{{ $transactions->total() }} row(s) selected.</p>
                         </div>
+
+                        <form method="GET" action="{{ route('transactions.recap') }}"
+                            class="flex justify-between mt-4">
+                            <select name="perPage" class="form-select rounded-md shadow-sm"
+                                onchange="this.form.submit()">
+                                <option value="10" {{ request('perPage') == 10 ? 'selected' : '' }}>10</option>
+                                <option value="25" {{ request('perPage') == 25 ? 'selected' : '' }}>25</option>
+                                <option value="50" {{ request('perPage') == 50 ? 'selected' : '' }}>50</option>
+                                <option value="100" {{ request('perPage') == 100 ? 'selected' : '' }}>100</option>
+                            </select>
+                            {{ $transactions->links() }}
+                        </form>
                     @else
                         <p class="text-gray-500">No transactions found.</p>
                     @endif
