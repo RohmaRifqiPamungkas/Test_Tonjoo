@@ -42,7 +42,7 @@
                     </div>
 
                     <div class="flex gap-4 mb-4">
-                        <form action="{{ route('transactions.index') }}" method="GET">
+                        <form action="{{ route('transactions.recap') }}" method="GET">
                             <div class="flex space-x-4 mb-4">
                                 <a href="{{ route('transactions.index') }}" id="reset-filter-btn"
                                     class="px-4 py-2 bg-blue-200 text-blue-700 rounded hidden">Reset Filter</a>
