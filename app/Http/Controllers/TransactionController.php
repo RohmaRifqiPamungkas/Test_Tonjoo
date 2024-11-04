@@ -27,6 +27,7 @@ class TransactionController extends Controller
                 'transaction_headers.rate_euro',
                 'transaction_headers.date_paid',
                 'transaction_details.id as detail_id',
+                'transaction_details.created_at',
                 'transaction_details.name as detail_name',
                 'transaction_details.value_idr as detail_value_idr',
                 'ms_categories.name as category_name'
@@ -218,9 +219,9 @@ class TransactionController extends Controller
             ->select(
                 'transaction_headers.date_paid',
                 'ms_categories.name as category_name',
-                DB::raw('SUM(transaction_details.value_idr) as total_value_idr'),
+                DB::raw('SUM(transaction_details.value_idr) as total_value_idr'), 'transaction_details.created_at'
             )
-            ->groupBy('transaction_headers.date_paid', 'ms_categories.name')
+            ->groupBy('transaction_headers.date_paid', 'ms_categories.name', 'transaction_details.created_at')
             ->orderBy('transaction_headers.date_paid', 'asc');
 
         // Filter kategori

@@ -87,7 +87,7 @@
                                 <tbody class="text-gray-600 text-sm font-light">
                                     @foreach ($transactions as $index => $transaction)
                                         <tr class="border-b border-gray-200 hover:bg-gray-100">
-                                            <td class="py-3 px-6">{{ $loop->iteration }}</td>
+                                            <td class="py-3 px-6">{{ $loop->iteration + $transactions->perPage() * ($transactions->currentPage() - 1) }}</td>
                                             <td class="py-3 px-6">
                                                 {{ \Carbon\Carbon::parse($transaction->date_paid)->format('Y-m-d') }}
                                             </td>
@@ -139,11 +139,10 @@
 
             const resetButton = document.getElementById('reset-filter-btn');
 
-            // Cek jika salah satu input tidak kosong
             if (startDate || endDate || categorySelect || searchInput) {
-                resetButton.classList.remove('hidden'); // Tampilkan tombol
+                resetButton.classList.remove('hidden');
             } else {
-                resetButton.classList.add('hidden'); // Sembunyikan tombol
+                resetButton.classList.add('hidden');
             }
         }
     </script>

@@ -70,6 +70,7 @@
                                         <th class="py-3 px-6 text-left">Description</th>
                                         <th class="py-3 px-6 text-left">Code</th>
                                         <th class="py-3 px-6 text-left">Rate Eur</th>
+                                        <th class="py-3 px-6 text-left">Created</th>
                                         <th class="py-3 px-6 text-left">Date Paid</th>
                                         <th class="py-3 px-6 text-left">Category</th>
                                         <th class="py-3 px-6 text-left">Name Transaction</th>
@@ -86,6 +87,7 @@
                                             <td class="py-3 px-6 text-left">{{ $transaction->description }}</td>
                                             <td class="py-3 px-6 text-left">{{ $transaction->code }}</td>
                                             <td class="py-3 px-6 text-left">{{ $transaction->rate_euro }}</td>
+                                            <td class="py-3 px-6 text-left">{{ $transaction->created_at }}</td>
                                             <td class="py-3 px-6 text-left">{{ \Carbon\Carbon::parse($transaction->date_paid)->format('d M Y') }}</td>
                                             <td class="py-3 px-6">
                                                 <span class="px-3 py-1 text-xs text-white bg-gray-500 rounded-full">{{ $transaction->category_name }}</span>

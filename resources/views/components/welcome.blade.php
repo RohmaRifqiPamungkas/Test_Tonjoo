@@ -41,7 +41,7 @@
 <div class="bg-white py-24 sm:py-32">
     <div class="mx-auto max-w-7xl px-6 lg:px-8">
         <div class="mx-auto max-w-2xl lg:mx-0">
-            <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">From the blog</h2>
+            <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Our Services</h2>
             <p class="mt-2 text-lg leading-8 text-gray-600">Learn how to grow your business with our expert advice.</p>
         </div>
         <div
@@ -49,136 +49,73 @@
 
             <!-- Card 1 -->
             <article class="max-w-xl flex flex-col items-start justify-between bg-white shadow-md rounded-lg p-6">
-                <div class="flex items-center gap-x-4 text-xs">
-                    <time datetime="2020-03-16" class="text-gray-500">Mar 16, 2020</time>
-                    <a href="#"
-                        class="relative z-10 rounded-full bg-gray-50 px-3 py-1.5 font-medium text-gray-600 hover:bg-gray-100">Marketing</a>
-                </div>
                 <div class="group relative">
+                    <div class="relative mt-8 flex items-center gap-x-4">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRB1BGwl-lcAgwCX2Z1KdIA563d9fIydE6WwUwe6AD7VBfmu1gmW158brAnnIsbkBB72Bs&usqp=CAU"
+                            alt="" class="h-10 w-10 rounded-full bg-gray-50">
+                    </div>
                     <h3 class="mt-3 text-lg font-semibold leading-6 text-gray-900 group-hover:text-gray-600">
                         <a href="#">
                             <span class="absolute inset-0"></span>
-                            Boost your conversion rate
+                            Google AdWords
                         </a>
                     </h3>
-                    <p class="mt-5 line-clamp-3 text-sm leading-6 text-gray-600">Illo sint voluptas. Error voluptates
-                        culpa eligendi. Hic vel totam vitae illo. Non aliquid explicabo necessitatibus unde. Sed
-                        exercitationem placeat consectetur nulla deserunt vel. Iusto corrupti dicta.</p>
-                </div>
-                <div class="relative mt-8 flex items-center gap-x-4">
-                    <img src="https://images.unsplash.com/photo-1519244703995-f4e0f30006d5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                        alt="" class="h-10 w-10 rounded-full bg-gray-50">
-                    <div class="text-sm leading-6">
-                        <p class="font-semibold text-gray-900">
-                            <a href="#">
-                                <span class="absolute inset-0"></span>
-                                Michael Foster
-                            </a>
-                        </p>
-                        <p class="text-gray-600">Co-Founder / CTO</p>
-                    </div>
+                    <p class="mt-5 line-clamp-3 text-sm leading-6 text-gray-600">Raih target pemasaran dengan Google
+                        AdWords. Jangkau calon pelanggan potensial Anda dengan iklan yang dirancang untuk menarik
+                        perhatian dan meningkatkan penjualan bisnis Anda. Pelajari lebih lanjut tentang strategi yang
+                        mengubah iklan menjadi konversi.</p>
                 </div>
             </article>
 
             <!-- Card 2 -->
             <article class="max-w-xl flex flex-col items-start justify-between bg-white shadow-md rounded-lg p-6">
-                <div class="flex items-center gap-x-4 text-xs">
-                    <time datetime="2020-03-16" class="text-gray-500">Mar 16, 2020</time>
-                    <a href="#"
-                        class="relative z-10 rounded-full bg-gray-50 px-3 py-1.5 font-medium text-gray-600 hover:bg-gray-100">Marketing</a>
-                </div>
                 <div class="group relative">
+                    <div class="relative mt-8 flex items-center gap-x-4">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTiHAX-UfgkeM2Iy8541DsUhHb_2oCgOLKvAQ&s"
+                            alt="" class="h-10 w-10 rounded-full bg-gray-50">
+                    </div>
                     <h3 class="mt-3 text-lg font-semibold leading-6 text-gray-900 group-hover:text-gray-600">
                         <a href="#">
                             <span class="absolute inset-0"></span>
-                            Boost your conversion rate
+                            Facebook Ads
                         </a>
                     </h3>
-                    <p class="mt-5 line-clamp-3 text-sm leading-6 text-gray-600">Illo sint voluptas. Error voluptates
-                        culpa eligendi. Hic vel totam vitae illo. Non aliquid explicabo necessitatibus unde. Sed
-                        exercitationem placeat consectetur nulla deserunt vel. Iusto corrupti dicta.</p>
-                </div>
-                <div class="relative mt-8 flex items-center gap-x-4">
-                    <img src="https://images.unsplash.com/photo-1519244703995-f4e0f30006d5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                        alt="" class="h-10 w-10 rounded-full bg-gray-50">
-                    <div class="text-sm leading-6">
-                        <p class="font-semibold text-gray-900">
-                            <a href="#">
-                                <span class="absolute inset-0"></span>
-                                Michael Foster
-                            </a>
-                        </p>
-                        <p class="text-gray-600">Co-Founder / CTO</p>
-                    </div>
+                    <p class="mt-5 line-clamp-3 text-sm leading-6 text-gray-600">Mengubah engagement menjadi hasil nyata. Dengan Facebook Ads, maksimalkan jangkauan Anda di media sosial, menarik audiens yang tepat, dan tingkatkan penjualan Anda. Klik untuk melihat cara kerjanya.</p>
                 </div>
             </article>
 
             <!-- Card 3 -->
             <article class="max-w-xl flex flex-col items-start justify-between bg-white shadow-md rounded-lg p-6">
-                <div class="flex items-center gap-x-4 text-xs">
-                    <time datetime="2020-03-16" class="text-gray-500">Mar 16, 2020</time>
-                    <a href="#"
-                        class="relative z-10 rounded-full bg-gray-50 px-3 py-1.5 font-medium text-gray-600 hover:bg-gray-100">Marketing</a>
-                </div>
                 <div class="group relative">
+                    <div class="relative mt-8 flex items-center gap-x-4">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRYTDJpyNbXqsk3k-GWoW7ObOM3M7Wu6CcCYw&s"
+                            alt="" class="h-10 w-10 rounded-full bg-gray-50">
+                    </div>
                     <h3 class="mt-3 text-lg font-semibold leading-6 text-gray-900 group-hover:text-gray-600">
                         <a href="#">
                             <span class="absolute inset-0"></span>
-                            Boost your conversion rate
+                            SEO
                         </a>
                     </h3>
-                    <p class="mt-5 line-clamp-3 text-sm leading-6 text-gray-600">Illo sint voluptas. Error voluptates
-                        culpa eligendi. Hic vel totam vitae illo. Non aliquid explicabo necessitatibus unde. Sed
-                        exercitationem placeat consectetur nulla deserunt vel. Iusto corrupti dicta.</p>
-                </div>
-                <div class="relative mt-8 flex items-center gap-x-4">
-                    <img src="https://images.unsplash.com/photo-1519244703995-f4e0f30006d5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                        alt="" class="h-10 w-10 rounded-full bg-gray-50">
-                    <div class="text-sm leading-6">
-                        <p class="font-semibold text-gray-900">
-                            <a href="#">
-                                <span class="absolute inset-0"></span>
-                                Michael Foster
-                            </a>
-                        </p>
-                        <p class="text-gray-600">Co-Founder / CTO</p>
-                    </div>
+                    <p class="mt-5 line-clamp-3 text-sm leading-6 text-gray-600">Mendominasi hasil pencarian dengan strategi SEO yang andal. Optimalkan visibilitas website Anda dan buat bisnis Anda selalu muncul pertama saat orang mencari produk atau layanan Anda. Baca lebih banyak tentang keajaiban SEO.</p>
                 </div>
             </article>
 
             <!-- Card 4 -->
             <article class="max-w-xl flex flex-col items-start justify-between bg-white shadow-md rounded-lg p-6">
-                <div class="flex items-center gap-x-4 text-xs">
-                    <time datetime="2020-03-16" class="text-gray-500">Mar 16, 2020</time>
-                    <a href="#"
-                        class="relative z-10 rounded-full bg-gray-50 px-3 py-1.5 font-medium text-gray-600 hover:bg-gray-100">Marketing</a>
-                </div>
                 <div class="group relative">
+                    <div class="relative mt-8 flex items-center gap-x-4">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ9C8YGmmvM5tS8HRRGpRgR2FVjcwRDpEOKEQ&s" alt="" class="h-10 w-10 rounded-full bg-gray-50">
+                    </div>
                     <h3 class="mt-3 text-lg font-semibold leading-6 text-gray-900 group-hover:text-gray-600">
                         <a href="#">
                             <span class="absolute inset-0"></span>
-                            Boost your conversion rate
+                            Training
                         </a>
                     </h3>
-                    <p class="mt-5 line-clamp-3 text-sm leading-6 text-gray-600">Illo sint voluptas. Error voluptates
-                        culpa eligendi. Hic vel totam vitae illo. Non aliquid explicabo necessitatibus unde. Sed
-                        exercitationem placeat consectetur nulla deserunt vel. Iusto corrupti dicta.</p>
-                </div>
-                <div class="relative mt-8 flex items-center gap-x-4">
-                    <img src="https://images.unsplash.com/photo-1519244703995-f4e0f30006d5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                        alt="" class="h-10 w-10 rounded-full bg-gray-50">
-                    <div class="text-sm leading-6">
-                        <p class="font-semibold text-gray-900">
-                            <a href="#">
-                                <span class="absolute inset-0"></span>
-                                Michael Foster
-                            </a>
-                        </p>
-                        <p class="text-gray-600">Co-Founder / CTO</p>
-                    </div>
+                    <p class="mt-5 line-clamp-3 text-sm leading-6 text-gray-600">Kembangkan keterampilan Anda dengan pelatihan pemasaran digital. Dari pemula hingga profesional, pelajari semua yang Anda butuhkan untuk membuat kampanye yang sukses. Daftar sekarang dan mulai perjalanan Anda.</p>
                 </div>
             </article>
-
         </div>
     </div>
 </div>
@@ -186,7 +123,7 @@
     <div class="mx-auto max-w-7xl px-6 lg:px-8">
         <!-- Section Title -->
         <div class="text-left">
-            <h3 class="text-lg font-semibold text-gray-500">Drawstring Canister</h3>
+            <h3 class="text-lg font-semibold text-gray-500"></h3>
             <h2 class="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Use it your way</h2>
             <p class="mt-4 text-gray-500">The Drawstring Canister comes with multiple strap and handle options to adapt
                 throughout your day. Shoulder sling it, backpack it, or handy carry it.</p>
@@ -200,17 +137,15 @@
             <div class="flex items-center">
                 <!-- Text content on the left -->
                 <div class="w-1/2 pr-4">
-                    <h3 class="text-xl font-semibold text-gray-900">Adventure-ready</h3>
-                    <p class="mt-4 text-gray-500">The Drawstring Canister is water and tear resistant with durable
-                        canvas construction. This bag holds up to the demands of daily use while keeping your snacks
-                        secure.</p>
+                    <h3 class="text-xl font-semibold text-gray-900">Google AdWords</h3>
+                    <p class="mt-4 text-gray-500">Temukan bagaimana Google AdWords dapat mengarahkan lalu lintas yang ditargetkan ke situs Anda. Pelajari strategi yang disesuaikan dengan kebutuhan bisnis Anda untuk memastikan setiap klik menghasilkan nilai lebih. Mulai tingkatkan ROI Anda hari ini.</p>
                     <button class="mt-4 inline-block bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700">Read
                         More</button>
                 </div>
 
                 <!-- Image content on the right -->
                 <div class="w-1/2">
-                    <img src="https://tailwindui.com/plus/img/ecommerce-images/home-page-02-edition-02.jpg"
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRB1BGwl-lcAgwCX2Z1KdIA563d9fIydE6WwUwe6AD7VBfmu1gmW158brAnnIsbkBB72Bs&usqp=CAU"
                         alt="Drawstring Canister" class="rounded-lg shadow-lg w-full max-w-lg h-auto max-h-96">
                 </div>
             </div>
@@ -218,15 +153,14 @@
             <div class="flex items-center">
                 <!-- Image content on the left -->
                 <div class="w-1/2">
-                    <img src="https://tailwindui.com/plus/img/ecommerce-images/home-page-02-edition-03.jpg"
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTiHAX-UfgkeM2Iy8541DsUhHb_2oCgOLKvAQ&s"
                         alt="Drawstring Canister" class="rounded-lg shadow-lg w-full max-w-lg h-auto max-h-96">
                 </div>
 
                 <!-- Text content on the right -->
                 <div class="w-1/2 pl-4">
-                    <h3 class="text-xl font-semibold text-gray-900">Durable and Versatile</h3>
-                    <p class="mt-4 text-gray-500">With its adjustable straps and multiple carrying options, this
-                        canister is perfect for any adventure or daily use.</p>
+                    <h3 class="text-xl font-semibold text-gray-900">Facebook Ads</h3>
+                    <p class="mt-4 text-gray-500">Gunakan kekuatan Facebook untuk memperluas jangkauan bisnis Anda. Pelajari bagaimana menargetkan audiens dengan tepat dan buat iklan yang memikat serta mendorong konversi. Tidak pernah semudah ini untuk berinteraksi dengan pelanggan Anda.</p>
                     <button class="mt-4 inline-block bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700">Read
                         More</button>
                 </div>
@@ -235,16 +169,15 @@
             <div class="flex items-center">
                 <!-- Text content on the left -->
                 <div class="w-1/2 pr-4">
-                    <h3 class="text-xl font-semibold text-gray-900">Perfect for All Occasions</h3>
-                    <p class="mt-4 text-gray-500">Whether you're headed to the gym, on a hike, or just out for the day,
-                        the Drawstring Canister fits your needs.</p>
+                    <h3 class="text-xl font-semibold text-gray-900">SEO</h3>
+                    <p class="mt-4 text-gray-500">Pahami pentingnya SEO dalam membangun merek yang kuat secara online. Kami memberikan solusi optimasi yang meningkatkan peringkat Anda dan menarik lebih banyak pengunjung ke situs web Anda.</p>
                     <button class="mt-4 inline-block bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700">Read
                         More</button>
                 </div>
 
                 <!-- Image content on the right -->
                 <div class="w-1/2">
-                    <img src="https://tailwindui.com/plus/img/ecommerce-images/home-page-02-edition-03.jpg"
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRYTDJpyNbXqsk3k-GWoW7ObOM3M7Wu6CcCYw&s"
                         alt="Drawstring Canister" class="rounded-lg shadow-lg w-full max-w-lg h-auto max-h-96">
                 </div>
             </div>
@@ -266,8 +199,7 @@
                     <div class="px-8 pb-3 pt-8 sm:px-10 sm:pb-0 sm:pt-10">
                         <p class="mt-2 text-lg/7 font-medium tracking-tight text-gray-950 max-lg:text-center">Mobile
                             friendly</p>
-                        <p class="mt-2 max-w-lg text-sm/6 text-gray-600 max-lg:text-center">Anim aute id magna aliqua
-                            ad ad non deserunt sunt. Qui irure qui lorem cupidatat commodo.</p>
+                        <p class="mt-2 max-w-lg text-sm/6 text-gray-600 max-lg:text-center">Aplikasi Anda, selalu dalam genggaman. Pastikan pengguna mendapatkan pengalaman yang mulus dan optimal di semua perangkat mobile, kapan saja, di mana saja.</p>
                     </div>
                     <div
                         class="relative min-h-[30rem] w-full grow [container-type:inline-size] max-lg:mx-auto max-lg:max-w-sm">
@@ -290,8 +222,7 @@
                     <div class="px-8 pt-8 sm:px-10 sm:pt-10">
                         <p class="mt-2 text-lg/7 font-medium tracking-tight text-gray-950 max-lg:text-center">
                             Performance</p>
-                        <p class="mt-2 max-w-lg text-sm/6 text-gray-600 max-lg:text-center">Lorem ipsum, dolor sit amet
-                            consectetur adipisicing elit maiores impedit.</p>
+                        <p class="mt-2 max-w-lg text-sm/6 text-gray-600 max-lg:text-center">Performa yang tak tertandingi. Dengan waktu respon hanya 1.04 detik, aplikasi Anda akan bekerja cepat dan efisien, memastikan pengalaman pengguna terbaik.</p>
                     </div>
                     <div
                         class="flex flex-1 items-center justify-center px-8 max-lg:pb-12 max-lg:pt-10 sm:px-10 lg:pb-2">
@@ -310,8 +241,7 @@
                     <div class="px-8 pt-8 sm:px-10 sm:pt-10">
                         <p class="mt-2 text-lg/7 font-medium tracking-tight text-gray-950 max-lg:text-center">Security
                         </p>
-                        <p class="mt-2 max-w-lg text-sm/6 text-gray-600 max-lg:text-center">Morbi viverra dui mi arcu
-                            sed. Tellus semper adipiscing suspendisse semper morbi.</p>
+                        <p class="mt-2 max-w-lg text-sm/6 text-gray-600 max-lg:text-center">Keamanan tingkat tinggi. Lindungi data Anda dengan solusi keamanan yang dirancang untuk mencegah ancaman dan memberikan ketenangan pikiran.</p>
                     </div>
                     <div class="flex flex-1 items-center [container-type:inline-size] max-lg:py-6 lg:pb-2">
                         <img class="h-[min(152px,40cqw)] object-cover object-center"
@@ -328,8 +258,7 @@
                     <div class="px-8 pb-3 pt-8 sm:px-10 sm:pb-0 sm:pt-10">
                         <p class="mt-2 text-lg/7 font-medium tracking-tight text-gray-950 max-lg:text-center">Powerful
                             APIs</p>
-                        <p class="mt-2 max-w-lg text-sm/6 text-gray-600 max-lg:text-center">Sit quis amet rutrum tellus
-                            ullamcorper ultricies libero dolor eget sem sodales gravida.</p>
+                        <p class="mt-2 max-w-lg text-sm/6 text-gray-600 max-lg:text-center">Integrasi tanpa batas. Gunakan API yang kuat untuk memperluas fungsionalitas aplikasi Anda dan mempercepat pengembangan dengan teknologi yang andal.</p>
                     </div>
                     <div class="relative min-h-[30rem] w-full grow">
                         <div
