@@ -85,6 +85,7 @@
                         </div>
                     </section>
 
+                    <!-- Blade Template -->
                     <section id="details-container" class="p-4">
                         <div class="mb-4 p-4 border border-gray-300 rounded-lg bg-gray-50 shadow-sm">
                             <h2 class="text-xl font-bold mb-4 text-gray-700">Data Transaksi</h2>
@@ -129,23 +130,9 @@
 
                 // Mengisi dropdown kategori
                 categories.forEach(category => {
-                    const isSelected = detail.category === category.id;
+                    const isSelected = detail.category == category.id;
                     $categorySelect.append(new Option(category.name, category.id, false, isSelected));
                 });
-
-                // Template tabel untuk transaksi
-                const $transactionsTable = $('<table>', {
-                    'class': 'w-full bg-white border-collapse'
-                }).html(`
-                <thead class="bg-gray-100 text-gray-600 uppercase text-sm leading-normal">
-                    <tr>
-                        <th class="py-3 px-6 text-left">Nama Transaksi</th>
-                        <th class="py-3 px-6 text-left">Nominal (IDR)</th>
-                        <th class="py-3 px-6 text-left"></th>
-                    </tr>
-                </thead>
-                <tbody></tbody>
-            `);
 
                 // Menambahkan elemen kategori dan tabel transaksi ke grup div
                 $groupDiv.append(
@@ -160,15 +147,30 @@
                     $('<div>', {
                         'class': 'mb-2'
                     }).append('<label>Category</label>', $categorySelect),
-                    $transactionsTable
                 );
+
+                // Template tabel untuk transaksi
+                const $transactionsTable = $('<table>', {
+                    'class': 'w-full bg-white border-collapse'
+                }).html(`
+                    <thead class="bg-gray-100 text-gray-600 uppercase text-sm leading-normal">
+                        <tr>
+                            <th class="py-3 px-6 text-left">Nama Transaksi</th>
+                            <th class="py-3 px-6 text-left">Nominal (IDR)</th>
+                            <th class="py-3 px-6 text-left"></th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                `);
+
+                $groupDiv.append($transactionsTable);
                 $container.append($groupDiv);
 
                 // Tambah baris transaksi jika ada data lama, atau baris kosong untuk transaksi baru
                 detail.transactions.forEach(transaction => addRowToTable($transactionsTable.find('tbody'),
                     detailIndex, transaction));
                 if (!detail.transactions.length) addRowToTable($transactionsTable.find('tbody'),
-                detailIndex); // Tambah baris kosong jika tidak ada transaksi
+                    detailIndex); // Tambah baris kosong jika tidak ada transaksi
 
                 detailIndex++;
             }
@@ -180,22 +182,32 @@
                     $('<td>', {
                         'class': 'border-t p-4'
                     }).append($('<input>', {
-                        type: 'text',
-                        name: `details[${index}][transactions][${rowIndex}][name]`,
-                        'class': 'form-input rounded-md shadow-sm col-span-2 border border-gray-300 w-full',
-                        placeholder: 'Nama Transaksi',
-                        value: transaction.name || ''
-                    })),
+                            type: 'text',
+                            name: `details[${index}][transactions][${rowIndex}][name]`,
+                            'class': 'form-input rounded-md shadow-sm col-span-2 border border-gray-300 w-full',
+                            placeholder: 'Nama Transaksi',
+                            value: transaction.name || ''
+                        }),
+                        $('<div>', {
+                            'class': 'text-red-600 mt-2 text-sm font-semibold',
+                            text: validationErrors[`details.${index}.transactions.${rowIndex}.name`] || ''
+                        })
+                    ),
                     $('<td>', {
                         'class': 'border-t p-2'
                     }).append($('<input>', {
-                        type: 'number',
-                        name: `details[${index}][transactions][${rowIndex}][amount]`,
-                        'class': 'form-input amount-input rounded-md shadow-sm col-span-1 border border-gray-300 w-full',
-                        placeholder: 'Nominal (IDR)',
-                        value: transaction.amount || '',
-                        step: '0.01'
-                    }).on('input', updateTotalAmount)),
+                            type: 'number',
+                            name: `details[${index}][transactions][${rowIndex}][amount]`,
+                            'class': 'form-input amount-input rounded-md shadow-sm col-span-1 border border-gray-300 w-full',
+                            placeholder: 'Nominal (IDR)',
+                            value: transaction.amount || '',
+                            step: '0.01'
+                        }).on('input', updateTotalAmount),
+                        $('<div>', {
+                            'class': 'text-red-600 mt-2 text-sm font-semibold',
+                            text: validationErrors[`details.${index}.transactions.${rowIndex}.amount`] || ''
+                        })
+                    ),
                     $('<td>', {
                         'class': 'border-t p-2'
                     }).append(
@@ -239,6 +251,15 @@
             oldDetails.length ? oldDetails.forEach(createTransactionGroup) : createTransactionGroup();
             updateTotalAmount();
         });
+    </script>
+
+    <script>
+        const validationErrors = @json($errors->toArray());
+        const oldDetails = @json(old('details', []));
+    </script>
+    <script>
+        const validationErrors = @json($errors->toArray());
+        const oldDetails = @json(old('details', []));
     </script>
 
 </x-app-layout>

@@ -125,15 +125,22 @@
                 }, {});
             }
 
+            // Debugging: Tampilkan data lama di console
+            console.log("Old Details:", oldDetails);
+
             // Inisialisasi grup transaksi berdasarkan kategori dari data lama
-            Object.values(oldDetails).forEach(details => createTransactionGroup(details));
-            if (!Object.keys(oldDetails).length) createTransactionGroup();
+            if (Object.keys(oldDetails).length) {
+                Object.values(oldDetails).forEach(details => createTransactionGroup(details));
+            } else {
+                createTransactionGroup();
+            }
 
             // Fungsi untuk membuat grup transaksi berdasarkan kategori
             function createTransactionGroup(details = []) {
                 const $groupDiv = $('<div>', {
                     'class': 'border p-4 mb-4 bg-white shadow-md rounded-md relative'
                 });
+
                 const $categorySelect = $('<select>', {
                     'class': 'form-select rounded-md w-full border-gray-300 p-2',
                     'name': `details[${detailIndex}][category]`,
@@ -141,59 +148,83 @@
                 }).append('<option value="">Select Category</option>');
 
                 categories.forEach(category => {
-                    $categorySelect.append(new Option(category.name, category.id, false, details[0]
-                        ?.transaction_category_id === category.id));
+                    const isSelected = details.length && details[0].transaction_category_id == category.id;
+                    $categorySelect.append(new Option(category.name, category.id, false, isSelected));
                 });
-
-                const $transactionsTable = $('<table>', {
-                    'class': 'w-full border-collapse'
-                }).html(`
-                <thead class="bg-gray-100 text-sm text-gray-600 uppercase"><tr>
-                    <th class="py-3 px-6 text-left">Nama Transaksi</th>
-                    <th class="py-3 px-6 text-left">Nominal (IDR)</th>
-                    <th class="py-3 px-6 text-left"></th>
-                </tr></thead><tbody></tbody>
-            `);
 
                 $groupDiv.append(
                     $('<button>', {
                         'class': 'absolute top-2 right-2 text-xl text-red-500',
                         'text': '×'
-                    }).click(() => $groupDiv.remove()),
+                    }).click(() => {
+                        $groupDiv.remove();
+                        updateTotalAmount();
+                    }),
                     $('<div>', {
                         'class': 'mb-2'
                     }).append('<label>Category</label>', $categorySelect),
-                    $transactionsTable
                 );
-                $container.append($groupDiv);
 
-                details.forEach((detail, index) => addRowToTable($transactionsTable.find('tbody'), detailIndex,
-                    detail, index));
+                const $transactionsTable = $('<table>', {
+                    'class': 'w-full border-collapse'
+                }).html(`
+                    <thead class="bg-gray-100 text-gray-600 uppercase text-sm leading-normal">
+                        <tr>
+                            <th class="py-3 px-6 text-left">Nama Transaksi</th>
+                            <th class="py-3 px-6 text-left">Nominal (IDR)</th>
+                            <th class="py-3 px-6 text-left"></th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                `);
+
+                $groupDiv.append($transactionsTable);
+                $container.append($groupDiv); // Tambahkan elemen ke $container
+
+                // Tambah baris transaksi jika ada data lama, atau baris kosong untuk transaksi baru
+                detail.transactions.forEach(transaction => addRowToTable($transactionsTable.find('tbody'),
+                    detailIndex, transaction));
+                if (!detail.transactions.length) addRowToTable($transactionsTable.find('tbody'),
+                    detailIndex); // Tambah baris kosong jika tidak ada transaksi
+
                 detailIndex++;
             }
 
-            // Fungsi untuk menambahkan baris pada tabel transaksi dalam kelompok
-            function addRowToTable($tbody, index, transaction = {}, rowIndex = $tbody.find('tr').length) {
+            // Fungsi untuk menambahkan baris transaksi ke tabel
+            function addRowToTable($tbody, index, transaction = {}) {
+                const rowIndex = $tbody.find('tr').length;
                 const $row = $('<tr>').append(
                     $('<td>', {
                         'class': 'border-t p-4'
-                    }).append($('<input>', {
-                        type: 'text',
-                        name: `details[${index}][transactions][${rowIndex}][name]`,
-                        'class': 'form-input rounded-md w-full border-gray-300',
-                        placeholder: 'Nama Transaksi',
-                        value: transaction.name || ''
-                    })),
+                    }).append(
+                        $('<input>', {
+                            type: 'text',
+                            name: `details[${index}][transactions][${rowIndex}][name]`,
+                            'class': 'form-input rounded-md w-full border-gray-300',
+                            placeholder: 'Nama Transaksi',
+                            value: transaction.name || ''
+                        }),
+                        $('<div>', {
+                            'class': 'text-red-600 mt-2 text-sm font-semibold',
+                            text: validationErrors[`details.${index}.transactions.${rowIndex}.name`] || ''
+                        })
+                    ),
                     $('<td>', {
                         'class': 'border-t p-2'
-                    }).append($('<input>', {
-                        type: 'number',
-                        name: `details[${index}][transactions][${rowIndex}][amount]`,
-                        'class': 'form-input amount-input rounded-md w-full border-gray-300',
-                        placeholder: 'Nominal (IDR)',
-                        value: transaction.value_idr || '',
-                        'step': '0.01'
-                    }).on('input', updateTotalAmount)),
+                    }).append(
+                        $('<input>', {
+                            type: 'number',
+                            name: `details[${index}][transactions][${rowIndex}][amount]`,
+                            'class': 'form-input amount-input rounded-md w-full border-gray-300',
+                            placeholder: 'Nominal (IDR)',
+                            value: transaction.value_idr || '',
+                            'step': '0.01'
+                        }).on('input', updateTotalAmount),
+                        $('<div>', {
+                            'class': 'text-red-600 mt-2 text-sm font-semibold',
+                            text: validationErrors[`details.${index}.transactions.${rowIndex}.amount`] || ''
+                        })
+                    ),
                     $('<td>', {
                         'class': 'border-t p-2'
                     }).append(
@@ -203,11 +234,13 @@
                         }).click(e => {
                             e.preventDefault();
                             addRowToTable($tbody, index);
+                            updateTotalAmount();
                         }),
                         $('<button>', {
-                            'class': 'bg-red-500 text-white px-2 py-1 rounded-md',
+                            'class': 'bg-red-500 text-white px-2 py-1 rounded-md shadow hover:bg-red-600',
                             'text': '−'
-                        }).click(e => {
+                        })
+                        .click(e => {
                             e.preventDefault();
                             $row.remove();
                             updateTotalAmount();
@@ -217,36 +250,28 @@
                 $tbody.append($row);
             }
 
-            // Update total amount
+            // Update total jumlah nominal
             function updateTotalAmount() {
                 const total = $('.amount-input').toArray().reduce((sum, el) => sum + (parseFloat($(el).val()) || 0),
                     0);
-                $totalAmountElement.text(`Total: ${total.toFixed(2)}`);
+                $('#total-amount').text(`Total: ${total.toFixed(2)}`);
             }
-
-            // Validasi sebelum pengiriman form
-            $('#transaction-form').on('submit', function(event) {
-                let isValid = true;
-                $container.find('select').each(function() {
-                    if (!$(this).val()) {
-                        $(this).siblings('.text-red-600').text('Pilih kategori!').show();
-                        isValid = false;
-                    } else {
-                        $(this).siblings('.text-red-600').hide();
-                    }
-                });
-                if (!isValid) event.preventDefault();
-            });
 
             // Tombol untuk menambah kelompok baru secara manual
             $('#addGroupButton').click(e => {
                 e.preventDefault();
                 createTransactionGroup();
-                updateTotalAmount();
             });
 
+            // Inisialisasi dari data lama jika ada, atau tambahkan grup kosong
+            oldDetails.length ? oldDetails.forEach(createTransactionGroup) : createTransactionGroup();
             updateTotalAmount();
         });
+    </script>
+
+    <script>
+        const validationErrors = @json($errors->toArray());
+        const oldDetails = @json(old('details', []));
     </script>
 
 </x-app-layout>

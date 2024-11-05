@@ -47,8 +47,8 @@ class TransactionController extends Controller
         if ($startDate && $endDate) {
             if ($startDate > $endDate) {
                 return redirect()->route('transactions.index')
-                ->withErrors(['end_date' => 'The end date cannot be earlier than the start date.'])
-                ->withInput();
+                    ->withErrors(['end_date' => 'The end date cannot be earlier than the start date.'])
+                    ->withInput();
             }
 
             $query->whereBetween('transaction_headers.date_paid', [$startDate, $endDate]);
@@ -69,16 +69,16 @@ class TransactionController extends Controller
 
         return view('transactions.index', compact('transactions', 'categories', 'transactionCategoryId', 'startDate', 'endDate', 'search'));
     }
-    
+
     public function create()
     {
         $categories = MsCategory::all();
         return view('transactions.create', compact('categories'));
     }
-    
+
     public function store(Request $request)
     {
-        // dd($request->all());
+        // Validasi data dengan pesan khusus
         $request->validate([
             'description'              => 'required|string|max:255',
             'code'                     => 'required|string|max:50',
@@ -89,6 +89,9 @@ class TransactionController extends Controller
             'details.*.transactions'   => 'required|array',
             'details.*.transactions.*.name'   => 'required|string|max:255',
             'details.*.transactions.*.amount' => 'required|numeric',
+        ], [
+            'details.*.transactions.*.name.required' => 'The name data transaction field is required.',
+            'details.*.transactions.*.amount.required' => 'The amount data transaction field is required.',
         ]);
 
         // Grupkan transaksi berdasarkan kategori
@@ -164,6 +167,9 @@ class TransactionController extends Controller
             'details.*.category' => 'required|integer|exists:ms_categories,id',
             'details.*.transactions.*.name' => 'required|string',
             'details.*.transactions.*.amount' => 'required|numeric',
+        ], [
+            'details.*.transactions.*.name.required' => 'The name data transaction field is required.',
+            'details.*.transactions.*.amount.required' => 'The amount data transaction field is required.',
         ]);
 
         // Update informasi utama transaksi
@@ -219,7 +225,8 @@ class TransactionController extends Controller
             ->select(
                 'transaction_headers.date_paid',
                 'ms_categories.name as category_name',
-                DB::raw('SUM(transaction_details.value_idr) as total_value_idr'), 'transaction_details.created_at'
+                DB::raw('SUM(transaction_details.value_idr) as total_value_idr'),
+                'transaction_details.created_at'
             )
             ->groupBy('transaction_headers.date_paid', 'ms_categories.name', 'transaction_details.created_at')
             ->orderBy('transaction_headers.date_paid', 'asc');
