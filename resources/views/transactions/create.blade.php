@@ -257,9 +257,5 @@
         const validationErrors = @json($errors->toArray());
         const oldDetails = @json(old('details', []));
     </script>
-    <script>
-        const validationErrors = @json($errors->toArray());
-        const oldDetails = @json(old('details', []));
-    </script>
 
 </x-app-layout>

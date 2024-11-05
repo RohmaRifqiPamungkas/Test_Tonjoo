@@ -18,6 +18,21 @@ Route::middleware([
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->name('dashboard');
+    
+    // News Route
+    Route::get('/news', function () {
+        return view('news');
+    })->name('news');
+    
+    // Pesanan Route
+    Route::get('/pesanan', function () {
+        return view('pesanan');
+    })->name('pesanan');
+    
+    // Kontak Route
+    Route::get('/kontak', function () {
+        return view('kontak');
+    })->name('kontak');
 
     // Transactions Routes - Using Route Resource
     Route::resource('transactions', TransactionController::class)->except(['show']);

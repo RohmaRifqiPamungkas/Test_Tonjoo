@@ -80,7 +80,9 @@
                             Facebook Ads
                         </a>
                     </h3>
-                    <p class="mt-5 line-clamp-3 text-sm leading-6 text-gray-600">Mengubah engagement menjadi hasil nyata. Dengan Facebook Ads, maksimalkan jangkauan Anda di media sosial, menarik audiens yang tepat, dan tingkatkan penjualan Anda. Klik untuk melihat cara kerjanya.</p>
+                    <p class="mt-5 line-clamp-3 text-sm leading-6 text-gray-600">Mengubah engagement menjadi hasil
+                        nyata. Dengan Facebook Ads, maksimalkan jangkauan Anda di media sosial, menarik audiens yang
+                        tepat, dan tingkatkan penjualan Anda. Klik untuk melihat cara kerjanya.</p>
                 </div>
             </article>
 
@@ -97,7 +99,10 @@
                             SEO
                         </a>
                     </h3>
-                    <p class="mt-5 line-clamp-3 text-sm leading-6 text-gray-600">Mendominasi hasil pencarian dengan strategi SEO yang andal. Optimalkan visibilitas website Anda dan buat bisnis Anda selalu muncul pertama saat orang mencari produk atau layanan Anda. Baca lebih banyak tentang keajaiban SEO.</p>
+                    <p class="mt-5 line-clamp-3 text-sm leading-6 text-gray-600">Mendominasi hasil pencarian dengan
+                        strategi SEO yang andal. Optimalkan visibilitas website Anda dan buat bisnis Anda selalu muncul
+                        pertama saat orang mencari produk atau layanan Anda. Baca lebih banyak tentang keajaiban SEO.
+                    </p>
                 </div>
             </article>
 
@@ -105,7 +110,8 @@
             <article class="max-w-xl flex flex-col items-start justify-between bg-white shadow-md rounded-lg p-6">
                 <div class="group relative">
                     <div class="relative mt-8 flex items-center gap-x-4">
-                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ9C8YGmmvM5tS8HRRGpRgR2FVjcwRDpEOKEQ&s" alt="" class="h-10 w-10 rounded-full bg-gray-50">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ9C8YGmmvM5tS8HRRGpRgR2FVjcwRDpEOKEQ&s"
+                            alt="" class="h-10 w-10 rounded-full bg-gray-50">
                     </div>
                     <h3 class="mt-3 text-lg font-semibold leading-6 text-gray-900 group-hover:text-gray-600">
                         <a href="#">
@@ -113,7 +119,9 @@
                             Training
                         </a>
                     </h3>
-                    <p class="mt-5 line-clamp-3 text-sm leading-6 text-gray-600">Kembangkan keterampilan Anda dengan pelatihan pemasaran digital. Dari pemula hingga profesional, pelajari semua yang Anda butuhkan untuk membuat kampanye yang sukses. Daftar sekarang dan mulai perjalanan Anda.</p>
+                    <p class="mt-5 line-clamp-3 text-sm leading-6 text-gray-600">Kembangkan keterampilan Anda dengan
+                        pelatihan pemasaran digital. Dari pemula hingga profesional, pelajari semua yang Anda butuhkan
+                        untuk membuat kampanye yang sukses. Daftar sekarang dan mulai perjalanan Anda.</p>
                 </div>
             </article>
         </div>
@@ -138,14 +146,16 @@
                 <!-- Text content on the left -->
                 <div class="w-1/2 pr-4">
                     <h3 class="text-xl font-semibold text-gray-900">Google AdWords</h3>
-                    <p class="mt-4 text-gray-500">Temukan bagaimana Google AdWords dapat mengarahkan lalu lintas yang ditargetkan ke situs Anda. Pelajari strategi yang disesuaikan dengan kebutuhan bisnis Anda untuk memastikan setiap klik menghasilkan nilai lebih. Mulai tingkatkan ROI Anda hari ini.</p>
+                    <p class="mt-4 text-gray-500">Temukan bagaimana Google AdWords dapat mengarahkan lalu lintas yang
+                        ditargetkan ke situs Anda. Pelajari strategi yang disesuaikan dengan kebutuhan bisnis Anda untuk
+                        memastikan setiap klik menghasilkan nilai lebih. Mulai tingkatkan ROI Anda hari ini.</p>
                     <button class="mt-4 inline-block bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700">Read
                         More</button>
                 </div>
 
                 <!-- Image content on the right -->
                 <div class="w-1/2">
-                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRB1BGwl-lcAgwCX2Z1KdIA563d9fIydE6WwUwe6AD7VBfmu1gmW158brAnnIsbkBB72Bs&usqp=CAU"
+                    <img src="https://img.freepik.com/free-vector/sales-consulting-concept-illustration_114360-9025.jpg?t=st=1730799917~exp=1730803517~hmac=42bef6f3d8b12cb8a8ae5a63a9996d19ad75f823f8782947fd0e046798e0be5a&w=1060"
                         alt="Drawstring Canister" class="rounded-lg shadow-lg w-full max-w-lg h-auto max-h-96">
                 </div>
             </div>
@@ -153,14 +163,16 @@
             <div class="flex items-center">
                 <!-- Image content on the left -->
                 <div class="w-1/2">
-                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTiHAX-UfgkeM2Iy8541DsUhHb_2oCgOLKvAQ&s"
+                    <img src="https://img.freepik.com/free-vector/marketing-consulting-concept-illustration_114360-9027.jpg?t=st=1730799625~exp=1730803225~hmac=76e176d6f4046da1cf21c2a19d3e89504e3a02a383b9ded057dd71adeeaf4488&w=1060"
                         alt="Drawstring Canister" class="rounded-lg shadow-lg w-full max-w-lg h-auto max-h-96">
                 </div>
 
                 <!-- Text content on the right -->
                 <div class="w-1/2 pl-4">
                     <h3 class="text-xl font-semibold text-gray-900">Facebook Ads</h3>
-                    <p class="mt-4 text-gray-500">Gunakan kekuatan Facebook untuk memperluas jangkauan bisnis Anda. Pelajari bagaimana menargetkan audiens dengan tepat dan buat iklan yang memikat serta mendorong konversi. Tidak pernah semudah ini untuk berinteraksi dengan pelanggan Anda.</p>
+                    <p class="mt-4 text-gray-500">Gunakan kekuatan Facebook untuk memperluas jangkauan bisnis Anda.
+                        Pelajari bagaimana menargetkan audiens dengan tepat dan buat iklan yang memikat serta mendorong
+                        konversi. Tidak pernah semudah ini untuk berinteraksi dengan pelanggan Anda.</p>
                     <button class="mt-4 inline-block bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700">Read
                         More</button>
                 </div>
@@ -170,14 +182,16 @@
                 <!-- Text content on the left -->
                 <div class="w-1/2 pr-4">
                     <h3 class="text-xl font-semibold text-gray-900">SEO</h3>
-                    <p class="mt-4 text-gray-500">Pahami pentingnya SEO dalam membangun merek yang kuat secara online. Kami memberikan solusi optimasi yang meningkatkan peringkat Anda dan menarik lebih banyak pengunjung ke situs web Anda.</p>
+                    <p class="mt-4 text-gray-500">Pahami pentingnya SEO dalam membangun merek yang kuat secara online.
+                        Kami memberikan solusi optimasi yang meningkatkan peringkat Anda dan menarik lebih banyak
+                        pengunjung ke situs web Anda.</p>
                     <button class="mt-4 inline-block bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700">Read
                         More</button>
                 </div>
 
                 <!-- Image content on the right -->
                 <div class="w-1/2">
-                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRYTDJpyNbXqsk3k-GWoW7ObOM3M7Wu6CcCYw&s"
+                    <img src="https://img.freepik.com/free-vector/seo-analytics-team-concept-illustration_114360-9205.jpg?t=st=1730799659~exp=1730803259~hmac=fe0d375fec12d63e9cca67f9258b54cb3009baa7d315ae15a9f07d8c260d5743&w=1060"
                         alt="Drawstring Canister" class="rounded-lg shadow-lg w-full max-w-lg h-auto max-h-96">
                 </div>
             </div>
@@ -185,49 +199,30 @@
         </div>
     </div>
 </div>
+
 <div class="bg-gray-50 py-24 sm:py-32">
     <div class="mx-auto max-w-2xl px-6 lg:max-w-7xl lg:px-8">
         <h2 class="text-center text-base/7 font-semibold text-indigo-600">Deploy faster</h2>
-        <p
-            class="mx-auto mt-2 max-w-lg text-pretty text-center text-4xl font-medium tracking-tight text-gray-950 sm:text-5xl">
+        <p class="mx-auto mt-2 max-w-lg text-pretty text-center text-4xl font-medium tracking-tight text-gray-950 sm:text-5xl">
             Everything you need to deploy your app.</p>
         <div class="mt-10 grid gap-4 sm:mt-16 lg:grid-cols-3 lg:grid-rows-2">
-            <div class="relative lg:row-span-2">
-                <div class="absolute inset-px rounded-lg bg-white lg:rounded-l-[2rem]"></div>
-                <div
-                    class="relative flex h-full flex-col overflow-hidden rounded-[calc(theme(borderRadius.lg)+1px)] lg:rounded-l-[calc(2rem+1px)]">
-                    <div class="px-8 pb-3 pt-8 sm:px-10 sm:pb-0 sm:pt-10">
-                        <p class="mt-2 text-lg/7 font-medium tracking-tight text-gray-950 max-lg:text-center">Mobile
-                            friendly</p>
-                        <p class="mt-2 max-w-lg text-sm/6 text-gray-600 max-lg:text-center">Aplikasi Anda, selalu dalam genggaman. Pastikan pengguna mendapatkan pengalaman yang mulus dan optimal di semua perangkat mobile, kapan saja, di mana saja.</p>
-                    </div>
-                    <div
-                        class="relative min-h-[30rem] w-full grow [container-type:inline-size] max-lg:mx-auto max-lg:max-w-sm">
-                        <div
-                            class="absolute inset-x-10 bottom-0 top-10 overflow-hidden rounded-t-[12cqw] border-x-[3cqw] border-t-[3cqw] border-gray-700 bg-gray-900 shadow-2xl">
-                            <img class="size-full object-cover object-top"
-                                src="https://tailwindui.com/plus/img/component-images/bento-03-mobile-friendly.png"
-                                alt="">
-                        </div>
-                    </div>
-                </div>
-                <div
-                    class="pointer-events-none absolute inset-px rounded-lg shadow ring-1 ring-black/5 lg:rounded-l-[2rem]">
-                </div>
-            </div>
+
             <div class="relative max-lg:row-start-1">
                 <div class="absolute inset-px rounded-lg bg-white max-lg:rounded-t-[2rem]"></div>
                 <div
                     class="relative flex h-full flex-col overflow-hidden rounded-[calc(theme(borderRadius.lg)+1px)] max-lg:rounded-t-[calc(2rem+1px)]">
                     <div class="px-8 pt-8 sm:px-10 sm:pt-10">
                         <p class="mt-2 text-lg/7 font-medium tracking-tight text-gray-950 max-lg:text-center">
-                            Performance</p>
-                        <p class="mt-2 max-w-lg text-sm/6 text-gray-600 max-lg:text-center">Performa yang tak tertandingi. Dengan waktu respon hanya 1.04 detik, aplikasi Anda akan bekerja cepat dan efisien, memastikan pengalaman pengguna terbaik.</p>
+                            Mobile
+                            friendly</p>
+                        <p class="mt-2 max-w-lg text-sm/6 text-gray-600 max-lg:text-center">Aplikasi Anda, selalu dalam
+                            genggaman. Pastikan pengguna mendapatkan pengalaman yang mulus dan optimal di semua
+                            perangkat mobile, kapan saja, di mana saja.</p>
                     </div>
                     <div
                         class="flex flex-1 items-center justify-center px-8 max-lg:pb-12 max-lg:pt-10 sm:px-10 lg:pb-2">
                         <img class="w-full max-lg:max-w-xs"
-                            src="https://tailwindui.com/plus/img/component-images/bento-03-performance.png"
+                            src="https://img.freepik.com/free-vector/home-screen-concept-illustration_114360-4703.jpg?t=st=1730800270~exp=1730803870~hmac=766a7bfcbf5a3e99eb92fa290e2a8070dbbced46d0a586bf18d31542891aa0a4&w=740"
                             alt="">
                     </div>
                 </div>
@@ -235,52 +230,53 @@
                     class="pointer-events-none absolute inset-px rounded-lg shadow ring-1 ring-black/5 max-lg:rounded-t-[2rem]">
                 </div>
             </div>
-            <div class="relative max-lg:row-start-3 lg:col-start-2 lg:row-start-2">
-                <div class="absolute inset-px rounded-lg bg-white"></div>
-                <div class="relative flex h-full flex-col overflow-hidden rounded-[calc(theme(borderRadius.lg)+1px)]">
+
+            <div class="relative max-lg:row-start-1">
+                <div class="absolute inset-px rounded-lg bg-white max-lg:rounded-t-[2rem]"></div>
+                <div
+                    class="relative flex h-full flex-col overflow-hidden rounded-[calc(theme(borderRadius.lg)+1px)] max-lg:rounded-t-[calc(2rem+1px)]">
                     <div class="px-8 pt-8 sm:px-10 sm:pt-10">
-                        <p class="mt-2 text-lg/7 font-medium tracking-tight text-gray-950 max-lg:text-center">Security
-                        </p>
-                        <p class="mt-2 max-w-lg text-sm/6 text-gray-600 max-lg:text-center">Keamanan tingkat tinggi. Lindungi data Anda dengan solusi keamanan yang dirancang untuk mencegah ancaman dan memberikan ketenangan pikiran.</p>
+                        <p class="mt-2 text-lg/7 font-medium tracking-tight text-gray-950 max-lg:text-center">
+                            Performance</p>
+                        <p class="mt-2 max-w-lg text-sm/6 text-gray-600 max-lg:text-center">Performa yang tak
+                            tertandingi. Dengan waktu respon hanya 1.04 detik, aplikasi Anda akan bekerja cepat dan
+                            efisien, memastikan pengalaman pengguna terbaik.</p>
                     </div>
-                    <div class="flex flex-1 items-center [container-type:inline-size] max-lg:py-6 lg:pb-2">
-                        <img class="h-[min(152px,40cqw)] object-cover object-center"
-                            src="https://tailwindui.com/plus/img/component-images/bento-03-security.png"
+                    <div
+                        class="flex flex-1 items-center justify-center px-8 max-lg:pb-12 max-lg:pt-10 sm:px-10 lg:pb-2">
+                        <img class="w-full max-lg:max-w-xs"
+                            src="https://img.freepik.com/free-vector/credit-assessment-concept-illustration_114360-7282.jpg?t=st=1730800037~exp=1730803637~hmac=df69d861d5d44c0719547c7c0adb665e903a3bc581b940747ed3174959f0b8c8&w=740"
                             alt="">
                     </div>
                 </div>
-                <div class="pointer-events-none absolute inset-px rounded-lg shadow ring-1 ring-black/5"></div>
-            </div>
-            <div class="relative lg:row-span-2">
-                <div class="absolute inset-px rounded-lg bg-white max-lg:rounded-b-[2rem] lg:rounded-r-[2rem]"></div>
                 <div
-                    class="relative flex h-full flex-col overflow-hidden rounded-[calc(theme(borderRadius.lg)+1px)] max-lg:rounded-b-[calc(2rem+1px)] lg:rounded-r-[calc(2rem+1px)]">
-                    <div class="px-8 pb-3 pt-8 sm:px-10 sm:pb-0 sm:pt-10">
-                        <p class="mt-2 text-lg/7 font-medium tracking-tight text-gray-950 max-lg:text-center">Powerful
-                            APIs</p>
-                        <p class="mt-2 max-w-lg text-sm/6 text-gray-600 max-lg:text-center">Integrasi tanpa batas. Gunakan API yang kuat untuk memperluas fungsionalitas aplikasi Anda dan mempercepat pengembangan dengan teknologi yang andal.</p>
+                    class="pointer-events-none absolute inset-px rounded-lg shadow ring-1 ring-black/5 max-lg:rounded-t-[2rem]">
+                </div>
+            </div>
+
+            <div class="relative max-lg:row-start-1">
+                <div class="absolute inset-px rounded-lg bg-white max-lg:rounded-t-[2rem]"></div>
+                <div
+                    class="relative flex h-full flex-col overflow-hidden rounded-[calc(theme(borderRadius.lg)+1px)] max-lg:rounded-t-[calc(2rem+1px)]">
+                    <div class="px-8 pt-8 sm:px-10 sm:pt-10">
+                        <p class="mt-2 text-lg/7 font-medium tracking-tight text-gray-950 max-lg:text-center">
+                            Powerful APIs</p>
+                        <p class="mt-2 max-w-lg text-sm/6 text-gray-600 max-lg:text-center">Integrasi tanpa batas.
+                            Gunakan API yang kuat untuk memperluas fungsionalitas aplikasi Anda dan mempercepat
+                            pengembangan dengan teknologi yang andal.</p>
                     </div>
-                    <div class="relative min-h-[30rem] w-full grow">
-                        <div
-                            class="absolute bottom-0 left-10 right-0 top-10 overflow-hidden rounded-tl-xl bg-gray-900 shadow-2xl">
-                            <div class="flex bg-gray-800/40 ring-1 ring-white/5">
-                                <div class="-mb-px flex text-sm font-medium leading-6 text-gray-400">
-                                    <div
-                                        class="border-b border-r border-b-white/20 border-r-white/10 bg-white/5 px-4 py-2 text-white">
-                                        NotificationSetting.jsx</div>
-                                    <div class="border-r border-gray-600/10 px-4 py-2">App.jsx</div>
-                                </div>
-                            </div>
-                            <div class="px-6 pb-14 pt-6">
-                                <!-- Your code example -->
-                            </div>
-                        </div>
+                    <div
+                        class="flex flex-1 items-center justify-center px-8 max-lg:pb-12 max-lg:pt-10 sm:px-10 lg:pb-2">
+                        <img class="w-full max-lg:max-w-xs"
+                            src="https://img.freepik.com/free-vector/version-control-concept-illustration_114360-1566.jpg?t=st=1730800639~exp=1730804239~hmac=2bf11fe9d6ebb29bd5016f3c57052b46df963bc4f64d4bc230daf7f397f9a906&w=740"
+                            alt="">
                     </div>
                 </div>
                 <div
-                    class="pointer-events-none absolute inset-px rounded-lg shadow ring-1 ring-black/5 max-lg:rounded-b-[2rem] lg:rounded-r-[2rem]">
+                    class="pointer-events-none absolute inset-px rounded-lg shadow ring-1 ring-black/5 max-lg:rounded-t-[2rem]">
                 </div>
             </div>
+            
         </div>
     </div>
 </div>
