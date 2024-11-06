@@ -87,7 +87,9 @@
                                 <tbody class="text-gray-600 text-sm font-light">
                                     @foreach ($transactions as $index => $transaction)
                                         <tr class="border-b border-gray-200 hover:bg-gray-100">
-                                            <td class="py-3 px-6">{{ $loop->iteration + $transactions->perPage() * ($transactions->currentPage() - 1) }}</td>
+                                            <td class="py-3 px-6">
+                                                {{ $loop->iteration + $transactions->perPage() * ($transactions->currentPage() - 1) }}
+                                            </td>
                                             <td class="py-3 px-6">
                                                 {{ \Carbon\Carbon::parse($transaction->date_paid)->format('Y-m-d') }}
                                             </td>
@@ -130,20 +132,47 @@
         </div>
     </div>
 
-    <script>
-        function checkInputFields() {
-            const startDate = document.querySelector('input[name="start_date"]').value;
-            const endDate = document.querySelector('input[name="end_date"]').value;
-            const categorySelect = document.getElementById('transaction_category_id').value;
-            const searchInput = document.querySelector('input[name="search"]').value;
+    <x-footer-component />
 
-            const resetButton = document.getElementById('reset-filter-btn');
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+
+    <script>
+        // Fungsi toggle menu
+        function toggleMenu(transactionId) {
+            $(`#menu-${transactionId}`).toggleClass('hidden');
+        }
+
+        // Menutup dropdown saat mengklik di luar dropdown
+        $(document).on('click', function(event) {
+            if (!$(event.target).closest('.focus\\:outline-none').length) {
+                $('.absolute').addClass('hidden');
+            }
+        });
+
+        // Mengecek input field dan menampilkan tombol reset filter
+        function checkInputFields() {
+            const startDate = $('input[name="start_date"]').val();
+            const endDate = $('input[name="end_date"]').val();
+            const categorySelect = $('#transaction_category_id').val();
+            const searchInput = $('input[name="search"]').val();
 
             if (startDate || endDate || categorySelect || searchInput) {
-                resetButton.classList.remove('hidden');
+                $('#reset-filter-btn').removeClass('hidden');
             } else {
-                resetButton.classList.add('hidden');
+                $('#reset-filter-btn').addClass('hidden');
             }
         }
+
+        // Inisialisasi DataTable
+        $(document).ready(function() {
+            $('table').DataTable({
+                "searching": false,
+                "paging": false,
+                "ordering": true,
+                "info": false
+            });
+        });
     </script>
+
 </x-app-layout>

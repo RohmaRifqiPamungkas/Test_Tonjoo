@@ -202,81 +202,91 @@
 
 <div class="bg-gray-50 py-24 sm:py-32">
     <div class="mx-auto max-w-2xl px-6 lg:max-w-7xl lg:px-8">
-        <h2 class="text-center text-base/7 font-semibold text-indigo-600">Deploy faster</h2>
-        <p class="mx-auto mt-2 max-w-lg text-pretty text-center text-4xl font-medium tracking-tight text-gray-950 sm:text-5xl">
-            Everything you need to deploy your app.</p>
+        <h2 class="text-center text-base font-semibold text-indigo-600">Deploy faster</h2>
+        <p class="mx-auto mt-2 max-w-lg text-center text-4xl font-medium tracking-tight text-gray-950 sm:text-5xl">
+            Everything you need to deploy your app.
+        </p>
         <div class="mt-10 grid gap-4 sm:mt-16 lg:grid-cols-3 lg:grid-rows-2">
-
-            <div class="relative max-lg:row-start-1">
-                <div class="absolute inset-px rounded-lg bg-white max-lg:rounded-t-[2rem]"></div>
-                <div
-                    class="relative flex h-full flex-col overflow-hidden rounded-[calc(theme(borderRadius.lg)+1px)] max-lg:rounded-t-[calc(2rem+1px)]">
+            
+            <!-- Card 1 -->
+            <div class="relative">
+                <div class="absolute inset-px rounded-lg bg-white"></div>
+                <div class="relative flex h-full flex-col overflow-hidden rounded-lg">
                     <div class="px-8 pt-8 sm:px-10 sm:pt-10">
-                        <p class="mt-2 text-lg/7 font-medium tracking-tight text-gray-950 max-lg:text-center">
-                            Mobile
-                            friendly</p>
-                        <p class="mt-2 max-w-lg text-sm/6 text-gray-600 max-lg:text-center">Aplikasi Anda, selalu dalam
-                            genggaman. Pastikan pengguna mendapatkan pengalaman yang mulus dan optimal di semua
-                            perangkat mobile, kapan saja, di mana saja.</p>
+                        <p class="text-lg font-medium tracking-tight text-gray-950 text-center">Mobile friendly</p>
+                        <p class="mt-2 max-w-lg text-sm text-gray-600 text-center">
+                            Aplikasi Anda, selalu dalam genggaman. Pastikan pengguna mendapatkan pengalaman yang mulus dan optimal di semua perangkat mobile, kapan saja, di mana saja.
+                        </p>
                     </div>
-                    <div
-                        class="flex flex-1 items-center justify-center px-8 max-lg:pb-12 max-lg:pt-10 sm:px-10 lg:pb-2">
-                        <img class="w-full max-lg:max-w-xs"
+                    <div class="flex flex-1 items-center justify-center px-8 pt-10 pb-12 sm:px-10 lg:pb-2">
+                        <img class="w-full max-w-xs"
                             src="https://img.freepik.com/free-vector/home-screen-concept-illustration_114360-4703.jpg?t=st=1730800270~exp=1730803870~hmac=766a7bfcbf5a3e99eb92fa290e2a8070dbbced46d0a586bf18d31542891aa0a4&w=740"
                             alt="">
                     </div>
                 </div>
-                <div
-                    class="pointer-events-none absolute inset-px rounded-lg shadow ring-1 ring-black/5 max-lg:rounded-t-[2rem]">
-                </div>
+                <div class="pointer-events-none absolute inset-px rounded-lg shadow ring-1 ring-black/5"></div>
             </div>
 
-            <div class="relative max-lg:row-start-1">
-                <div class="absolute inset-px rounded-lg bg-white max-lg:rounded-t-[2rem]"></div>
-                <div
-                    class="relative flex h-full flex-col overflow-hidden rounded-[calc(theme(borderRadius.lg)+1px)] max-lg:rounded-t-[calc(2rem+1px)]">
+            <!-- Card 2 -->
+            <div class="relative">
+                <div class="absolute inset-px rounded-lg bg-white"></div>
+                <div class="relative flex h-full flex-col overflow-hidden rounded-lg">
                     <div class="px-8 pt-8 sm:px-10 sm:pt-10">
-                        <p class="mt-2 text-lg/7 font-medium tracking-tight text-gray-950 max-lg:text-center">
-                            Performance</p>
-                        <p class="mt-2 max-w-lg text-sm/6 text-gray-600 max-lg:text-center">Performa yang tak
-                            tertandingi. Dengan waktu respon hanya 1.04 detik, aplikasi Anda akan bekerja cepat dan
-                            efisien, memastikan pengalaman pengguna terbaik.</p>
+                        <p class="text-lg font-medium tracking-tight text-gray-950 text-center">Performance</p>
+                        <p class="mt-2 max-w-lg text-sm text-gray-600 text-center">
+                            Performa yang tak tertandingi. Dengan waktu respon hanya 1.04 detik, aplikasi Anda akan bekerja cepat dan efisien, memastikan pengalaman pengguna terbaik.
+                        </p>
                     </div>
-                    <div
-                        class="flex flex-1 items-center justify-center px-8 max-lg:pb-12 max-lg:pt-10 sm:px-10 lg:pb-2">
-                        <img class="w-full max-lg:max-w-xs"
+                    <div class="flex flex-1 items-center justify-center px-8 pt-10 pb-12 sm:px-10 lg:pb-2">
+                        <img class="w-full max-w-xs"
                             src="https://img.freepik.com/free-vector/credit-assessment-concept-illustration_114360-7282.jpg?t=st=1730800037~exp=1730803637~hmac=df69d861d5d44c0719547c7c0adb665e903a3bc581b940747ed3174959f0b8c8&w=740"
                             alt="">
                     </div>
                 </div>
-                <div
-                    class="pointer-events-none absolute inset-px rounded-lg shadow ring-1 ring-black/5 max-lg:rounded-t-[2rem]">
-                </div>
+                <div class="pointer-events-none absolute inset-px rounded-lg shadow ring-1 ring-black/5"></div>
             </div>
 
-            <div class="relative max-lg:row-start-1">
-                <div class="absolute inset-px rounded-lg bg-white max-lg:rounded-t-[2rem]"></div>
-                <div
-                    class="relative flex h-full flex-col overflow-hidden rounded-[calc(theme(borderRadius.lg)+1px)] max-lg:rounded-t-[calc(2rem+1px)]">
+            <!-- Card 3 -->
+            <div class="relative">
+                <div class="absolute inset-px rounded-lg bg-white"></div>
+                <div class="relative flex h-full flex-col overflow-hidden rounded-lg">
                     <div class="px-8 pt-8 sm:px-10 sm:pt-10">
-                        <p class="mt-2 text-lg/7 font-medium tracking-tight text-gray-950 max-lg:text-center">
-                            Powerful APIs</p>
-                        <p class="mt-2 max-w-lg text-sm/6 text-gray-600 max-lg:text-center">Integrasi tanpa batas.
-                            Gunakan API yang kuat untuk memperluas fungsionalitas aplikasi Anda dan mempercepat
-                            pengembangan dengan teknologi yang andal.</p>
+                        <p class="text-lg font-medium tracking-tight text-gray-950 text-center">Powerful APIs</p>
+                        <p class="mt-2 max-w-lg text-sm text-gray-600 text-center">
+                            Integrasi tanpa batas. Gunakan API yang kuat untuk memperluas fungsionalitas aplikasi Anda dan mempercepat pengembangan dengan teknologi yang andal.
+                        </p>
                     </div>
-                    <div
-                        class="flex flex-1 items-center justify-center px-8 max-lg:pb-12 max-lg:pt-10 sm:px-10 lg:pb-2">
-                        <img class="w-full max-lg:max-w-xs"
+                    <div class="flex flex-1 items-center justify-center px-8 pt-10 pb-12 sm:px-10 lg:pb-2">
+                        <img class="w-full max-w-xs"
                             src="https://img.freepik.com/free-vector/version-control-concept-illustration_114360-1566.jpg?t=st=1730800639~exp=1730804239~hmac=2bf11fe9d6ebb29bd5016f3c57052b46df963bc4f64d4bc230daf7f397f9a906&w=740"
                             alt="">
                     </div>
                 </div>
-                <div
-                    class="pointer-events-none absolute inset-px rounded-lg shadow ring-1 ring-black/5 max-lg:rounded-t-[2rem]">
-                </div>
+                <div class="pointer-events-none absolute inset-px rounded-lg shadow ring-1 ring-black/5"></div>
             </div>
-            
+
+            <!-- Card 4 -->
+            <div class="relative">
+                <div class="absolute inset-px rounded-lg bg-white"></div>
+                <div class="relative flex h-full flex-col overflow-hidden rounded-lg">
+                    <div class="px-8 pt-8 sm:px-10 sm:pt-10">
+                        <p class="text-lg font-medium tracking-tight text-gray-950 text-center">Powerful APIs</p>
+                        <p class="mt-2 max-w-lg text-sm text-gray-600 text-center">
+                            Integrasi tanpa batas. Gunakan API yang kuat untuk memperluas fungsionalitas aplikasi Anda dan mempercepat pengembangan dengan teknologi yang andal.
+                        </p>
+                    </div>
+                    <div class="flex flex-1 items-center justify-center px-8 pt-10 pb-12 sm:px-10 lg:pb-2">
+                        <img class="w-full max-w-xs"
+                            src="https://img.freepik.com/free-vector/version-control-concept-illustration_114360-1566.jpg?t=st=1730800639~exp=1730804239~hmac=2bf11fe9d6ebb29bd5016f3c57052b46df963bc4f64d4bc230daf7f397f9a906&w=740"
+                            alt="">
+                    </div>
+                </div>
+                <div class="pointer-events-none absolute inset-px rounded-lg shadow ring-1 ring-black/5"></div>
+            </div>
+
         </div>
     </div>
 </div>
+
+<x-footer-component />
+

@@ -78,6 +78,7 @@ class TransactionController extends Controller
 
     public function store(Request $request)
     {
+        // dd($request->all());
         // Validasi data dengan pesan khusus
         $request->validate([
             'description'              => 'required|string|max:255',

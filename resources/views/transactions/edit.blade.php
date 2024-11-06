@@ -107,6 +107,8 @@
         </div>
     </div>
 
+    <x-footer-component />
+
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
         $(document).ready(function() {
@@ -115,6 +117,7 @@
             const $totalAmountElement = $('#total-amount');
             const categories = @json($categories);
             const oldDetails = groupDetailsByCategory(@json(old('details', $transaction->details)));
+            const validationErrors = @json($errors->toArray());
 
             // Fungsi untuk mengelompokkan oldDetails berdasarkan transaction_category_id
             function groupDetailsByCategory(details) {
@@ -144,7 +147,7 @@
                     'class': 'form-select rounded-md w-full border-gray-300 p-2',
                     'name': `details[${detailIndex}][category]`,
                     'required': true
-                }).append('<option value="">Select Category</option>');
+                }).append('<option value="">Pilih Kategori</option>');
 
                 categories.forEach(category => {
                     const isSelected = details.length && details[0].transaction_category_id == category.id;
@@ -174,11 +177,11 @@
                     }),
                     $('<div>', {
                         'class': 'mb-2'
-                    }).append('<label>Category</label>', $categorySelect),
+                    }).append('<label>Kategori</label>', $categorySelect),
                     $transactionsTable
                 );
 
-                $container.append($groupDiv); // Tambahkan elemen ke $container
+                $container.append($groupDiv);
 
                 // Tambah baris transaksi jika ada data lama, atau baris kosong untuk transaksi baru
                 if (details.length) {
@@ -192,7 +195,8 @@
             }
 
             // Fungsi untuk menambahkan baris transaksi ke tabel
-            function addRowToTable($tbody, index, transaction = {}, rowIndex = $tbody.find('tr').length) {
+            function addRowToTable($tbody, index, transaction = {}) {
+                const rowIndex = $tbody.find('tr').length;
                 const $row = $('<tr>').append(
                     $('<td>', {
                         'class': 'border-t p-4'
@@ -238,8 +242,7 @@
                         $('<button>', {
                             'class': 'bg-red-500 text-white px-2 py-1 rounded-md shadow hover:bg-red-600',
                             'text': '−'
-                        })
-                        .click(e => {
+                        }).click(e => {
                             e.preventDefault();
                             $row.remove();
                             updateTotalAmount();
@@ -249,6 +252,20 @@
                 $tbody.append($row);
             }
 
+            // Fungsi untuk memvalidasi input di dalam repeater
+            function validateRepeater() {
+                let isValid = true;
+                $('.form-input').each(function() {
+                    if (!$(this).val()) {
+                        isValid = false;
+                        $(this).next('.text-red-600').text('Field ini wajib diisi');
+                    } else {
+                        $(this).next('.text-red-600').text('');
+                    }
+                });
+                return isValid;
+            }
+
             // Update total jumlah nominal
             function updateTotalAmount() {
                 const total = $('.amount-input').toArray().reduce((sum, el) => sum + (parseFloat($(el).val()) || 0),
@@ -256,20 +273,21 @@
                 $totalAmountElement.text(`Total: ${total.toFixed(2)}`);
             }
 
+            // Validasi form saat submit
+            $('#transaction-form').submit(function(e) {
+                if (!validateRepeater()) {
+                    e.preventDefault();
+                }
+            });
+
             // Tombol untuk menambah kelompok baru secara manual
             $('#addGroupButton').click(e => {
                 e.preventDefault();
                 createTransactionGroup();
-                updateTotalAmount();
             });
 
             updateTotalAmount();
         });
-    </script>
-
-    <script>
-        const validationErrors = @json($errors->toArray());
-        const oldDetails = @json(old('details', []));
     </script>
 
 </x-app-layout>

@@ -5,8 +5,6 @@
         </h2>
     </x-slot>
 
-
-
     <div class="py-12">
         <div class="max-w-full mx-auto sm:px-6 lg:px-8">
             <div class="bg-white shadow-xl sm:rounded-lg p-6">
@@ -57,18 +55,32 @@
                             </tr>
                         </thead>
                         <tbody class="bg-white divide-y divide-gray-200">
+                            @php
+                                $totalValueIdr = 0;
+                            @endphp
                             @foreach ($transaction->details as $detail)
+                                @php
+                                    $totalValueIdr += $detail->value_idr;
+                                @endphp
                                 <tr>
                                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                                        {{ optional($categories->find($detail->category))->name }}</td>
+                                        <span
+                                            class="px-3 py-1 text-xs text-white bg-gray-500 rounded-full">{{ optional($categories->find($detail->category))->name }}</span>
+                                    </td>
                                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{{ $detail->name }}
                                     </td>
                                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                                        {{ number_format($detail->value_idr, 2) }}</td>
+                                        {{ number_format($detail->value_idr, 2) }}
+                                    </td>
                                 </tr>
                             @endforeach
                         </tbody>
+
                     </table>
+
+                    <div class="mt-4 text-right font-bold text-gray-800">
+                        Total: Rp{{ number_format($totalValueIdr, 2) }}
+                    </div>
                 </section>
 
                 <div class="mt-6">
@@ -78,4 +90,7 @@
             </div>
         </div>
     </div>
+
+    <x-footer-component />
+
 </x-app-layout>

@@ -19,20 +19,20 @@ Route::middleware([
         return view('dashboard');
     })->name('dashboard');
     
-    // News Route
-    Route::get('/news', function () {
-        return view('news');
-    })->name('news');
+    // About Us Route
+    Route::get('/about_us', function () {
+        return view('about_us');
+    })->name('about_us');
     
-    // Pesanan Route
-    Route::get('/pesanan', function () {
-        return view('pesanan');
-    })->name('pesanan');
+    // Services Route
+    Route::get('/services', function () {
+        return view('services');
+    })->name('services');
     
-    // Kontak Route
-    Route::get('/kontak', function () {
-        return view('kontak');
-    })->name('kontak');
+    // Contact Route
+    Route::get('/contact', function () {
+        return view('contact');
+    })->name('contact');
 
     // Transactions Routes - Using Route Resource
     Route::resource('transactions', TransactionController::class)->except(['show']);
