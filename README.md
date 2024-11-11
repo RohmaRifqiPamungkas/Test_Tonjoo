@@ -7,21 +7,93 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
-## About Laravel
+## About Apps
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Aplikasi ini adalah sistem manajemen transaksi yang membantu pengguna untuk mencatat dan mengelola transaksi keuangan mereka dengan lebih efisien. Aplikasi ini dilengkapi dengan fitur-fitur berikut:
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+- Pencatatan Transaksi: Memungkinkan pengguna untuk mencatat transaksi dengan detail seperti kode, deskripsi, nilai tukar mata uang, dan tanggal pembayaran.
+- Manajemen Kategori: Mendukung pengelompokan transaksi berdasarkan kategori, sehingga memudahkan pelacakan dan analisis keuangan.
+- Penghitungan Total Otomatis: Menampilkan jumlah total dari nominal transaksi yang tercatat.
+- Validasi Data Otomatis: Menjamin data yang dimasukkan pengguna lengkap dan valid sebelum disimpan.
+- Recap Transaksi: Memungkinkan pengguna untuk merekap transaksi berdasarkan tanggal transaksi.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## Persyaratan
+
+- PHP (Min PHP 8.2.12)
+- Database MySQL
+- Composer version 2.7.9
+- Node.js (v20.15.0) dan npm (v10.9.0)
+- Web server (misalnya, Apache atau Nginx)
+
+## Instruksi Instalasi
+1. Clone Repository
+```bash
+$ git clone https://github.com/RohmaRifqiPamungkas/Test_Tonjoo
+```
+
+2. Install Dependencies
+```bash
+$ composer install
+$ npm install
+$ npm run dev
+```
+
+3. Konfigurasi Aplikasi Salin file .env.example menjadi .env
+```bash
+$ cp .env.example .env
+```
+
+4. Atur variabel di file .env, terutama untuk koneksi database
+```bash
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=nama_database
+DB_USERNAME=root
+DB_PASSWORD=
+```
+
+5. Import file database (tonjoo.sql) ke http://localhost/phpmyadmin
+```bash
+http://localhost/phpmyadmin
+```
+
+6. Generate Application Key
+```bash
+$ php artisan key:generate
+```
+
+7. Jalankan Migrasi Laravel
+```bash
+$ php artisan migrate
+$ php artisan migrate:fresh --seed --seeder=DatabaseSeeder 
+```
+
+8. Jalankan Server
+```bash
+$ php artisan serve
+$ npm run dev
+```
+
+9. Akses Aplikasi
+```bash
+http://localhost:8000
+```
+
+10. Buka Browser 
+```bash
+http://127.0.0.1:8000/login
+http://127.0.0.1:8000/register
+```
+
+11. Login atau Register dengan akun berikut
+```bash
+username : test@example.com
+password : password
+```
 
 ## Link Demo
+
 http://test-tonjoo.temukreatif.id/
 
 ## Screenshoot Project
