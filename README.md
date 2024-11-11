@@ -110,19 +110,24 @@ Aplikasi ini adalah sistem manajemen transaksi yang membantu pengguna untuk menc
 $ git clone https://github.com/RohmaRifqiPamungkas/Test_Tonjoo
 ```
 
-2. Install Dependencies
+2. Masuk ke Folder
+```bash
+$ cd Test_Tonjoo
+```
+
+3. Install Dependencies
 ```bash
 $ composer install
 $ npm install
 $ npm run dev
 ```
 
-3. Konfigurasi Aplikasi Salin file .env.example menjadi .env
+4. Konfigurasi Aplikasi Salin file .env.example menjadi .env
 ```bash
 $ cp .env.example .env
 ```
 
-4. Atur variabel di file .env, terutama untuk koneksi database
+5. Atur variabel di file .env, terutama untuk koneksi database
 ```bash
 DB_CONNECTION=mysql
 DB_HOST=127.0.0.1
@@ -132,40 +137,40 @@ DB_USERNAME=root
 DB_PASSWORD=
 ```
 
-5. Import file database (tonjoo.sql) ke http://localhost/phpmyadmin
+6. Import file database (tonjoo.sql) ke http://localhost/phpmyadmin
 ```bash
 http://localhost/phpmyadmin
 ```
 
-6. Generate Application Key
+7. Generate Application Key
 ```bash
 $ php artisan key:generate
 ```
 
-7. Jalankan Migrasi Laravel
+8. Jalankan Migrasi Laravel
 ```bash
 $ php artisan migrate
 $ php artisan migrate:fresh --seed --seeder=DatabaseSeeder 
 ```
 
-8. Jalankan Server
+9. Jalankan Server
 ```bash
 $ php artisan serve
 $ npm run dev
 ```
 
-9. Akses Aplikasi
+10. Akses Aplikasi
 ```bash
 http://localhost:8000
 ```
 
-10. Buka Browser 
+11. Buka Browser 
 ```bash
 http://127.0.0.1:8000/login
 http://127.0.0.1:8000/register
 ```
 
-11. Login atau Register dengan akun berikut
+12. Login atau Register dengan akun berikut
 ```bash
 username : test@example.com
 password : password
