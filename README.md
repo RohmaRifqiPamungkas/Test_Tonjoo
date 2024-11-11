@@ -9,7 +9,7 @@
 
 ---
 
-<p align="center"><img width="371" height="58" src="/art/logo.svg" alt="Logo Laravel Jetstream"></p>
+<p align="center"><img width="371" height="58" src="https://github.com/laravel/jetstream/blob/5.x/art/logo.svg" alt="Logo Laravel Jetstream"></p>
 
 <p align="center">
     <a href="https://github.com/laravel/jetstream/actions"><img src="https://github.com/laravel/jetstream/workflows/tests/badge.svg" alt="Build Status"></a>
