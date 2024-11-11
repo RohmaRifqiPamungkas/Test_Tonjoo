@@ -7,6 +7,31 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
+---
+
+<p align="center">
+  <a href="https://tailwindcss.com" target="_blank">
+    <picture>
+      <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/tailwindlabs/tailwindcss/HEAD/.github/logo-dark.svg">
+      <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/tailwindlabs/tailwindcss/HEAD/.github/logo-light.svg">
+      <img alt="Tailwind CSS" src="https://raw.githubusercontent.com/tailwindlabs/tailwindcss/HEAD/.github/logo-light.svg" width="350" height="70" style="max-width: 100%;">
+    </picture>
+  </a>
+</p>
+
+<p align="center">
+  A utility-first CSS framework for rapidly building custom user interfaces.
+</p>
+
+<p align="center">
+    <a href="https://github.com/tailwindlabs/tailwindcss/actions"><img src="https://img.shields.io/github/actions/workflow/status/tailwindlabs/tailwindcss/ci.yml?branch=next" alt="Build Status"></a>
+    <a href="https://www.npmjs.com/package/tailwindcss"><img src="https://img.shields.io/npm/dt/tailwindcss.svg" alt="Total Downloads"></a>
+    <a href="https://github.com/tailwindcss/tailwindcss/releases"><img src="https://img.shields.io/npm/v/tailwindcss.svg" alt="Latest Release"></a>
+    <a href="https://github.com/tailwindcss/tailwindcss/blob/master/LICENSE"><img src="https://img.shields.io/npm/l/tailwindcss.svg" alt="License"></a>
+</p>
+
+---
+
 ## About Apps
 
 Aplikasi ini adalah sistem manajemen transaksi yang membantu pengguna untuk mencatat dan mengelola transaksi keuangan mereka dengan lebih efisien. Aplikasi ini dilengkapi dengan fitur-fitur berikut:
@@ -16,6 +41,8 @@ Aplikasi ini adalah sistem manajemen transaksi yang membantu pengguna untuk menc
 - Penghitungan Total Otomatis: Menampilkan jumlah total dari nominal transaksi yang tercatat.
 - Validasi Data Otomatis: Menjamin data yang dimasukkan pengguna lengkap dan valid sebelum disimpan.
 - Recap Transaksi: Memungkinkan pengguna untuk merekap transaksi berdasarkan tanggal transaksi.
+
+---
 
 ## Persyaratan
 
