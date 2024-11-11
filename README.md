@@ -7,65 +7,93 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
-## About Laravel
+## About Apps
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Aplikasi ini adalah sistem manajemen transaksi yang membantu pengguna untuk mencatat dan mengelola transaksi keuangan mereka dengan lebih efisien. Aplikasi ini dilengkapi dengan fitur-fitur berikut:
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+- Pencatatan Transaksi: Memungkinkan pengguna untuk mencatat transaksi dengan detail seperti kode, deskripsi, nilai tukar mata uang, dan tanggal pembayaran.
+- Manajemen Kategori: Mendukung pengelompokan transaksi berdasarkan kategori, sehingga memudahkan pelacakan dan analisis keuangan.
+- Penghitungan Total Otomatis: Menampilkan jumlah total dari nominal transaksi yang tercatat.
+- Validasi Data Otomatis: Menjamin data yang dimasukkan pengguna lengkap dan valid sebelum disimpan.
+- Recap Transaksi: Memungkinkan pengguna untuk merekap transaksi berdasarkan tanggal transaksi.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## Persyaratan
 
-## Learning Laravel
+- PHP (Min PHP 8.2.12)
+- Database MySQL
+- Composer version 2.7.9
+- Node.js (v20.15.0) dan npm (v10.9.0)
+- Web server (misalnya, Apache atau Nginx)
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## Instruksi Instalasi
+1. Clone Repository
+```bash
+$ git clone https://github.com/RohmaRifqiPamungkas/Test_Tonjoo
+```
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+2. Install Dependencies
+```bash
+$ composer install
+$ npm install
+$ npm run dev
+```
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+3. Konfigurasi Aplikasi Salin file .env.example menjadi .env
+```bash
+$ cp .env.example .env
+```
 
-## Laravel Sponsors
+4. Atur variabel di file .env, terutama untuk koneksi database
+```bash
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=nama_database
+DB_USERNAME=root
+DB_PASSWORD=
+```
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+5. Import file database (tonjoo.sql) ke http://localhost/phpmyadmin
+```bash
+http://localhost/phpmyadmin
+```
 
-### Premium Partners
+6. Generate Application Key
+```bash
+$ php artisan key:generate
+```
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+7. Jalankan Migrasi Laravel
+```bash
+$ php artisan migrate
+$ php artisan migrate:fresh --seed --seeder=DatabaseSeeder 
+```
 
-## Contributing
+8. Jalankan Server
+```bash
+$ php artisan serve
+$ npm run dev
+```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+9. Akses Aplikasi
+```bash
+http://localhost:8000
+```
 
-## Code of Conduct
+10. Buka Browser 
+```bash
+http://127.0.0.1:8000/login
+http://127.0.0.1:8000/register
+```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+11. Login atau Register dengan akun berikut
+```bash
+username : test@example.com
+password : password
+```
 
 ## Link Demo
+
 http://test-tonjoo.temukreatif.id/
 
 ## Screenshoot Project
